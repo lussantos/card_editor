@@ -5,7 +5,7 @@
 	<groupId>card_editor_service</groupId>
 	<artifactId>card_editor_service</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>ear</packaging>
 
 	<name>card_editor_service</name>
 	<url>http://maven.apache.org</url>
