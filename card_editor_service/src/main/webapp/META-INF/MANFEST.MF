@@ -1,0 +1,5 @@
+<archive>
+    <manifestEntries>
+        <Dependencies>com.mongodb</Dependencies>
+    </manifestEntries>
+</archive>
