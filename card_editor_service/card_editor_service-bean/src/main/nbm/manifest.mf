@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: card_editor_service/card_edito_service/bean/Bundle.properties
+
