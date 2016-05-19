@@ -5,7 +5,7 @@
  */
 package br.com.card_editor.ejb.system_user;
 
-import br.com.card_editor_user.SystemUser;
+import br.com.card_editor.entity.SystemUser;
 
 /**
  *

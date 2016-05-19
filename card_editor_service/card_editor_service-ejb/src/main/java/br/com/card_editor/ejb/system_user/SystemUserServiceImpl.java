@@ -5,16 +5,16 @@
  */
 package br.com.card_editor.ejb.system_user;
 
-import br.com.card_editor_user.SystemUser;
+import br.com.card_editor.entity.SystemUser;
 import card_editor.card.editor.ejb.dao.SystemUserDao;
 import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import org.bson.Document;
 
 /**
  *
@@ -32,11 +32,16 @@ public class SystemUserServiceImpl extends ServiceBase implements SystemUserServ
             @WebParam(name = "user") SystemUser user) {
 
         MongoClient client = new MongoClient(uri);
-        MongoCollection collection = getConnetcion(client).getCollection("SystemUser");
-        Document doc = new Document();
-        doc.put("userName", "teste2");
-        doc.put("userPassword", "abc");
-        collection.insertOne(doc);
+        try {
+            //        MongoCollection collection = getConnetcion(client).getCollection("SystemUser");
+//        Document doc = new Document();
+//        doc.put("userName", "teste2");
+//        doc.put("userPassword", "abc");
+//        collection.insertOne(doc);
+            user.insert(getConnetcion(client));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         client.close();
     }
 
