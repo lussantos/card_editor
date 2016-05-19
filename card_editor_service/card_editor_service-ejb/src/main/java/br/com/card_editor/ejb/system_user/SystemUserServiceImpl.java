@@ -5,7 +5,6 @@
  */
 package br.com.card_editor.ejb.system_user;
 
-import br.com.card_editor.entity.Player;
 import br.com.card_editor.entity.SystemUser;
 import card_editor.card.editor.ejb.dao.SystemUserDao;
 import card_editor.card.editor.util.ServiceBase;
@@ -26,21 +25,26 @@ import javax.jws.WebService;
 @Stateless()
 public class SystemUserServiceImpl extends ServiceBase implements SystemUserService {
 
-    private SystemUserDao dao;
 
     @Override
     @WebResult(name = "Resultado")
-    public void salvarUsuario(
-            @WebParam(name = "systemUser") SystemUser user, @WebParam(name = "player") Player p) {
-
+    public void cadastrarUsuario(
+            @WebParam(name = "systemUser") SystemUser user) {
         MongoClient client = new MongoClient(uri);
         try {
-            if (user != null) {
-                user.update(getConnetcion(client));
-            }
-            if (p != null) {
-                p.update(getConnetcion(client));
-            }
+            SystemUserDao.cadastrarUsuario(user, getConnetcion(client));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        client.close();
+    }
+
+    @Override
+    @WebResult(name = "Resultado")
+    public void alterarUsuario(SystemUser user) {
+        MongoClient client = new MongoClient(uri);
+        try {
+            SystemUserDao.alterarUsuario(user, getConnetcion(client));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalClassFormatException ex) {
@@ -52,16 +56,10 @@ public class SystemUserServiceImpl extends ServiceBase implements SystemUserServ
     @Override
     @WebResult(name = "Resultado")
     public void excluirUsuario(
-            @WebParam(name = "systemUser") SystemUser user, @WebParam(name = "player") Player p) {
-
+            @WebParam(name = "systemUser") SystemUser user) {
         MongoClient client = new MongoClient(uri);
         try {
-            if (user != null) {
-                user.delete(getConnetcion(client));
-            }
-            if (p != null) {
-                p.delete(getConnetcion(client));
-            }
+            SystemUserDao.excluirUsuario(user, getConnetcion(client));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalClassFormatException ex) {

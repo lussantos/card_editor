@@ -5,7 +5,10 @@
  */
 package card_editor.card.editor.ejb.dao;
 
+import br.com.card_editor.entity.SystemUser;
 import card_editor.card.editor.util.DaoBase;
+import com.mongodb.client.MongoDatabase;
+import java.lang.instrument.IllegalClassFormatException;
 
 /**
  *
@@ -13,5 +16,15 @@ import card_editor.card.editor.util.DaoBase;
  */
 public class SystemUserDao extends DaoBase {
 
-    
+    public static void cadastrarUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException {
+        user.insert(db);
+    }
+
+    public static void excluirUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
+        user.delete(db);
+    }
+
+    public static void alterarUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
+        user.update(db);
+    }
 }

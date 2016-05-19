@@ -14,7 +14,10 @@ import br.com.card_editor.entity.SystemUser;
  */
 public interface SystemUserService {
 
-    void salvarUsuario(SystemUser user, Player p);
+    void cadastrarUsuario(SystemUser user);
     
-    void excluirUsuario(SystemUser user, Player p);
+    void excluirUsuario(SystemUser user);
+    
+    void alterarUsuario(SystemUser user);
+    
 }
