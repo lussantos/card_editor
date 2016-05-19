@@ -2,7 +2,6 @@ package br.com.card_editor.entity;
 
 import br.com.card_editor.annotation.Coluna;
 import br.com.card_editor.annotation.ID;
-import br.com.card_editor.annotation.IDComposto;
 import br.com.card_editor.annotation.Tabela;
 import br.com.card_editor.util.EntityBase;
 

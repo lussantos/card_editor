@@ -11,8 +11,6 @@ import br.com.card_editor.annotation.IDComposto;
 import br.com.card_editor.annotation.Tabela;
 import br.com.card_editor.annotation.Transient;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.WriteResult;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.io.Serializable;
