@@ -1,3 +1,6 @@
-H:\card_editor\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\Coluna.java
-H:\card_editor\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\ID.java
-H:\card_editor\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\util\EntityBase.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\ID.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\Coluna.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\IDComposto.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\entity\SystemUser.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\annotation\Tabela.java
+C:\Users\lucas.santos\Documents\Trab_desenv\card_editor_service\card_editor_service_entity\src\main\java\br\com\card_editor\util\EntityBase.java
