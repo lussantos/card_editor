@@ -1,6 +1,9 @@
 br\com\card_editor\annotation\ID.class
 br\com\card_editor\annotation\Tabela.class
+br\com\card_editor\annotation\IDComposto.class
+br\com\card_editor\annotation\Transient.class
+br\com\card_editor\entity\key\IdPlayer.class
+br\com\card_editor\entity\Player.class
 br\com\card_editor\util\EntityBase.class
 br\com\card_editor\annotation\Coluna.class
-br\com\card_editor\annotation\IDComposto.class
 br\com\card_editor\entity\SystemUser.class
