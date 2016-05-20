@@ -12,5 +12,6 @@
     <module>card_editor_service-bean</module>
     <module>card_editor_service_entity</module>
     <module>card_editor_web</module>
+    <module>card_editor_acesso</module>
   </modules>
 </project>
