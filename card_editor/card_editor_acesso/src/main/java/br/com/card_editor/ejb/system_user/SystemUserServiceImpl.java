@@ -24,17 +24,6 @@ public interface SystemUserServiceImpl {
 
     /**
      * 
-     * @param systemUser
-     */
-    @WebMethod
-    @RequestWrapper(localName = "cadastrarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuario")
-    @ResponseWrapper(localName = "cadastrarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuarioResponse")
-    public void cadastrarUsuario(
-        @WebParam(name = "systemUser", targetNamespace = "")
-        SystemUser systemUser);
-
-    /**
-     * 
      * @param arg0
      */
     @WebMethod
@@ -43,6 +32,17 @@ public interface SystemUserServiceImpl {
     public void alterarUsuario(
         @WebParam(name = "arg0", targetNamespace = "")
         SystemUser arg0);
+
+    /**
+     * 
+     * @param systemUser
+     */
+    @WebMethod
+    @RequestWrapper(localName = "cadastrarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuario")
+    @ResponseWrapper(localName = "cadastrarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuarioResponse")
+    public void cadastrarUsuario(
+        @WebParam(name = "systemUser", targetNamespace = "")
+        SystemUser systemUser);
 
     /**
      * 

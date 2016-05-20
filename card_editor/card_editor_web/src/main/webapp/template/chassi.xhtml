@@ -17,13 +17,40 @@
     <h:body>
         <h:form id="form">
             <p:growl id="messages" showDetail="true" showSummary="true" life="20000"/>
+            <p:panelGrid id="panelInputs">
+                <p:row>
+                    <p:column>
+                        <div>
+                            <p:outputLabel value="Identificardor" />
+                        </div>
+                        <p:inputText value="#{usuarioMB.player.id}" />
+                    </p:column>
+                    <p:column>
+                        <div>
+                            <p:outputLabel value="Nome" />
+                        </div>
+                        <p:inputText value="#{usuarioMB.player.nome}" />
+                    </p:column>
+
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <div>
+                            <p:outputLabel value="Descricao" />
+                        </div>
+                        <p:inputText value="#{usuarioMB.player.descricao}" />
+                    </p:column>
+                    <p:column>
+                        <div>
+                            <p:outputLabel value="Email" />
+                        </div>
+                        <p:inputText value="#{usuarioMB.player.email}" />
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+            <p:commandButton process="@this, panelInputs"
+                             actionListener="#{usuarioMB.salvar()}" 
+                             update=":form:messages"/>
         </h:form>
-        <div id="content">
-            <div id="content-stage">
-                <div id="stage">
-                    <ui:insert name="conteudo-pagina"/>
-                </div>
-            </div>
-        </div>
     </h:body>
 </html>

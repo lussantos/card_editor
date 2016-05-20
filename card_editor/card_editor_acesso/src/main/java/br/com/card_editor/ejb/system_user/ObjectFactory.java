@@ -39,27 +39,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SystemUser }
-     * 
-     */
-    public SystemUser createSystemUser() {
-        return new SystemUser();
-    }
-
-    /**
-     * Create an instance of {@link CadastrarUsuarioResponse }
-     * 
-     */
-    public CadastrarUsuarioResponse createCadastrarUsuarioResponse() {
-        return new CadastrarUsuarioResponse();
-    }
-
-    /**
      * Create an instance of {@link ExcluirUsuario }
      * 
      */
     public ExcluirUsuario createExcluirUsuario() {
         return new ExcluirUsuario();
+    }
+
+    /**
+     * Create an instance of {@link SystemUser }
+     * 
+     */
+    public SystemUser createSystemUser() {
+        return new SystemUser();
     }
 
     /**
@@ -71,11 +63,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExcluirUsuarioResponse }
+     * Create an instance of {@link CadastrarUsuario }
      * 
      */
-    public ExcluirUsuarioResponse createExcluirUsuarioResponse() {
-        return new ExcluirUsuarioResponse();
+    public CadastrarUsuario createCadastrarUsuario() {
+        return new CadastrarUsuario();
+    }
+
+    /**
+     * Create an instance of {@link CadastrarUsuarioResponse }
+     * 
+     */
+    public CadastrarUsuarioResponse createCadastrarUsuarioResponse() {
+        return new CadastrarUsuarioResponse();
     }
 
     /**
@@ -87,11 +87,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CadastrarUsuario }
+     * Create an instance of {@link ExcluirUsuarioResponse }
      * 
      */
-    public CadastrarUsuario createCadastrarUsuario() {
-        return new CadastrarUsuario();
+    public ExcluirUsuarioResponse createExcluirUsuarioResponse() {
+        return new ExcluirUsuarioResponse();
     }
 
     /**

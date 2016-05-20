@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>card_editor</artifactId>
-    <groupId>card_editor</groupId>
-    <version>1.0.0</version>
-  </parent>
+        <artifactId>card_editor</artifactId>
+        <groupId>card_editor</groupId>
+        <version>1.0.0</version>
+    </parent>
 
     <groupId>card_editor</groupId>
     <artifactId>card_editor_acesso</artifactId>
@@ -28,9 +28,10 @@
         </dependency>
         <dependency>
             <groupId>br.com.sicredi.arqref.common.util</groupId>
-            <artifactId>sicredi-arqref-common-locator</artifactId>
-            <version>04.00.00.00</version>
-            <type>jar</type>
+            <artifactId>sicredi-arqref-common-util</artifactId>
+            <version>1.0.0.12</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/sicredi-arqref-common-locator-04.00.00.00.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -62,6 +63,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
@@ -80,6 +82,7 @@
                             <sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
                             <wsdlUrls>
                                 <wsdl>http://192.168.56.1:7004/SystemUserServiceImpl/SystemUserService?WSDL</wsdl> 
+                                <wsdl>http://192.168.56.1:7004/PlayerServiceImpl/PlayerService?WSDL</wsdl>
                             </wsdlUrls>
                             
                             <bindingFiles>
