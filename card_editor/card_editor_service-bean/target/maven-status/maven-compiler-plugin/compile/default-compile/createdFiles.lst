@@ -1,1 +1,6 @@
-br\com\card_editor_user\SystemUserBean.class
+br\com\card_editor\input\IdPlayerBean.class
+br\com\card_editor\input\SystemUserBean.class
+br\com\card_editor\input\InSalvarUsuarioPlayer.class
+br\com\card_editor\output\OutVerificaAcessoUsuario.class
+br\com\card_editor\output\OutVerificaExistenciaUsuario.class
+br\com\card_editor\input\PlayerBean.class

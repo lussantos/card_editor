@@ -4,13 +4,8 @@ import br.com.card_editor.annotation.Column;
 import br.com.card_editor.annotation.ID;
 import br.com.card_editor.annotation.Table;
 import br.com.card_editor.util.EntityBase;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 
 @Table(collectionName = "SYSTEM_USER")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SystemUser")
 public class SystemUser extends EntityBase {
 
     @ID

@@ -21,7 +21,7 @@ public class SystemUserDao extends DaoBase {
 
     public static void cadastrarUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException {
         MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
-        if (collection.count(new BasicDBObject("userName", user.getUserName())) <= 0) {
+        if (!collection.find(new BasicDBObject("userName", user.getUserName())).iterator().hasNext()) {
             user.insert(db);
         } else {
             throw new IllegalAccessException("Deve ser inserido um usuáio com nome ainda não usado.");
@@ -36,4 +36,16 @@ public class SystemUserDao extends DaoBase {
         user.update(db);
     }
 
+    public static boolean verificaExistenciaUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
+        MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
+        return collection.find(new BasicDBObject("userName", user.getUserName())).iterator().hasNext();
+    }
+
+    public static boolean verificaAcessoUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
+        MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
+        BasicDBObject obj = new BasicDBObject();
+        obj.put("userName", user.getUserName());
+        obj.put("userPassword", user.getUserPassword());
+        return collection.find(obj).iterator().hasNext();
+    }
 }

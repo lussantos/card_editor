@@ -1,68 +1,88 @@
-
-
+//this.load('../public_html/menu.html');"
 function salvarUsuario() {
     jQuery.support.cors = true;
-    $.soap({
-        url: 'http://' + window.location.hostname + ':' + window.location.port + '/SystemUserServiceImpl/SystemUserService?wsdl/',
-        method: 'alterarUsuario',
-        elementName: 'ns0:SystemUser',
-        envAttributes: {
-            'xmlns:ns0': 'http://system_user.ejb.card_editor.com.br/'
-        },
-        data: {
-            userName: 'user_testejs',
-            userPassword: 'teste!'
-        },
-        success: function (SOAPResponse) {
-            $('#resposta').text("Sucesso");
-        },
-        error: function (SOAPResponse) {
-            $('#resposta').text("Erro");
-            console.log(SOAPResponse.toString());
-        }
-    });
-}
-function salvarUsuario2() {
-    jQuery.support.cors = true;
-    var wsUrl = "http://172.22.248.163:7004/SystemUserServiceImpl/SystemUserService?wsdl";
-    var soapRequest = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">    <soap:Body>        <ns1:cadastrarUsuario xmlns:ns1="http://system_user.ejb.card_editor.com.br/">            <SystemUser>                <userName>StringValue</userName>                <userPassword>StringValue</userPassword>            </SystemUser>        </ns1:cadastrarUsuario>    </soap:Body></soap:Envelope>';
-
-
+    var wsUrl = "http://" + window.location.hostname + ":7004/SystemAccountServiceImpl/SysteAcountService?WSDL";
+    var soapRequest = createSoapRequest('criarContaUsuario', 'InSalvarUsuarioPlayer');
     $.ajax({
+        crossDomain: false,
         type: "POST",
         url: wsUrl,
         contentType: "text/xml",
         dataType: "xml",
-        data: soapRequest
+        data: soapRequest,
+        success: processSuccess,
+        error: processError
     });
 }
-function soap() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('POST', 'http://localhost:7004/SystemUserServiceImpl/SystemUserService', true);
 
-    // build SOAP request
-    var sr =
-            '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
-            '<soap:Body>' +
-            '<ns1:alterarUsuario xmlns:ns1="http://system_user.ejb.card_editor.com.br/">' +
-            '<SystemUser>' +
-            '<userName>StringValue</userName>' +
-            '<userPassword>StringValue</userPassword>'
-    ' </SystemUser>'
-    '</ns1:alterarUsuario>'
-    '</soap:Body>'
-    '</soap:Envelope>';
+function createSoapRequest(method, parameterClass) {
+    var a = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
+            "<soap:Body>" +
+            "<ns1:" + method + " xmlns:ns1=" + '"' + "http://system_account.ejb.card_editor.com.br/" + "" + '"' + "" + ">";
+    a += "<" + parameterClass + ">";
+    a += "<playerBean>";
+    a += "<dataNascimento>" + document.getElementById("bday").value + "</dataNascimento>";
+    a += "<descricao>" + document.getElementById("desc").value + "</descricao>";
+    a += "<email>" + document.getElementById("email").value + "</email>";
+    a += "<idPlayer>";
+    a += "    <nick_name>" + document.getElementById("name").value + "</nick_name>";
+    a += "    <tp_conta>" + document.getElementById("bday").value + "</tp_conta>";
+    a += "</idPlayer>";
+    a += "<nome>" + document.getElementById("bday").value + "</nome>";
+    a += "<usuarioSistema>" + document.getElementById("usr").value + "</usuarioSistema>";
+    a += "</playerBean>";
+    a += "<systemUserBean>";
+    a += "<userName>" + document.getElementById("usr").value + "</userName>";
+    a += "<userPassword>" + document.getElementById("pwd").value + "</userPassword>";
+    a += "</systemUserBean>";
+    a += "</" + parameterClass + ">";
+    a += " </ns1:" + method + ">" +
+            "</soap:Body>" +
+            "</soap:Envelope>";
+    return a.toString();
+}
+function verificaUsuario() {
+    jQuery.support.cors = true;
+    var wsUrl = "http://" + window.location.hostname + ":7004/SystemUserServiceImpl/SystemUserService?WSDL";
+    var soapRequest = createSoapRequestSimgleParameter('verificaExistenciaUsuario', 'SystemUser', [['userName', document.getElementById("usr").value]]);
+    $.ajax({
+        crossDomain: false,
+        type: "POST",
+        url: wsUrl,
+        contentType: "text/xml",
+        dataType: "xml",
+        data: soapRequest,
+        success: processSuccessVerification,
+        error: processError
+    });
+}
+function createSoapRequestSimgleParameter(method, parameterClass, parameterValue) {
 
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
-                alert('done. use firebug/console to see network response');
-            }
-        }
+    var a = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
+            "<soap:Body>" +
+            "<ns1:" + method + " xmlns:ns1=" + '"' + "http://system_user.ejb.card_editor.com.br/" + "" + '"' + "" + ">";
+    a += "<" + parameterClass + ">";
+    for (var n = 0; n < parameterValue.length; n++) {
+        a += "<" + parameterValue[n][0] + ">" + parameterValue[n][1] + "</" + parameterValue[n][0] + ">";
     }
-    // Send the POST request
-    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
-    xmlhttp.send(sr);
-    // send request
-    // ...
+    a += "</" + parameterClass + ">" +
+            " </ns1:" + method + ">" +
+            "</soap:Body>" +
+            "</soap:Envelope>";
+    return a.toString();
+}
+
+function processSuccessVerification(data, status, req) {
+    if(data.constains("true")>= 0){
+        $('#resp_user').text('Usuário já existe');
+    }
+}
+
+
+function processSuccess(data, status, req) {
+    if (status === "success")
+        $("#resposta").text($(req.responseXML).find("HelloResult").text());
+}
+
+function processError(data, status, req) {
 }

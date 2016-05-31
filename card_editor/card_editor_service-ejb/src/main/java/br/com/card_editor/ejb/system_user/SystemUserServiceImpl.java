@@ -6,6 +6,8 @@
 package br.com.card_editor.ejb.system_user;
 
 import br.com.card_editor.entity.SystemUser;
+import br.com.card_editor.output.OutVerificaAcessoUsuario;
+import br.com.card_editor.output.OutVerificaExistenciaUsuario;
 import card_editor.card.editor.ejb.dao.SystemUserDao;
 import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
@@ -16,7 +18,6 @@ import javax.ejb.Stateless;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -68,4 +69,39 @@ public class SystemUserServiceImpl extends ServiceBase implements SystemUserServ
         }
         client.close();
     }
+
+    @Override
+    @WebResult(name = "OutVerificaExistenciaUsuario")
+    public OutVerificaExistenciaUsuario verificaExistenciaUsuario(
+            @WebParam(name = "SystemUser") SystemUser user) {
+        MongoClient client = new MongoClient(uri);
+        OutVerificaExistenciaUsuario retorno = new OutVerificaExistenciaUsuario();
+        try {
+            retorno.setExiste(SystemUserDao.verificaExistenciaUsuario(user, getConnetcion(client)));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalClassFormatException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        client.close();
+        return retorno;
+    }
+
+    @Override
+    @WebResult(name = "OutVerificaAcessoUsuario")
+    public OutVerificaAcessoUsuario verificaAcessoUsuario(
+            @WebParam(name = "SystemUser") SystemUser user) {
+        MongoClient client = new MongoClient(uri);
+        OutVerificaAcessoUsuario retorno = new OutVerificaAcessoUsuario();
+        try {
+            retorno.setPossuiAcesso(SystemUserDao.verificaAcessoUsuario(user, getConnetcion(client)));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalClassFormatException ex) {
+            Logger.getLogger(SystemUserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        client.close();
+        return retorno;
+    }
+
 }

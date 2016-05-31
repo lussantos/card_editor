@@ -1,10 +1,8 @@
-package br.com.card_editor_user;
+package br.com.card_editor.input;
 
 import java.io.Serializable;
 
 public class SystemUserBean implements Serializable {
-
-    private final String COLLECTION_NAME = "SystemUser";
 
     private String userName;
 
