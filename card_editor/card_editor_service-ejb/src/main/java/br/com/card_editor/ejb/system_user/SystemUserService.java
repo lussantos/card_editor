@@ -5,7 +5,6 @@
  */
 package br.com.card_editor.ejb.system_user;
 
-import br.com.card_editor.entity.Player;
 import br.com.card_editor.entity.SystemUser;
 
 /**
@@ -15,9 +14,9 @@ import br.com.card_editor.entity.SystemUser;
 public interface SystemUserService {
 
     void cadastrarUsuario(SystemUser user);
-    
+
     void excluirUsuario(SystemUser user);
-    
+
     void alterarUsuario(SystemUser user);
-    
+
 }

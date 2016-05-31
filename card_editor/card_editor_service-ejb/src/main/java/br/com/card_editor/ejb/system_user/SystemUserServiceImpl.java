@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -25,11 +26,10 @@ import javax.jws.WebService;
 @Stateless()
 public class SystemUserServiceImpl extends ServiceBase implements SystemUserService {
 
-
     @Override
     @WebResult(name = "Resultado")
     public void cadastrarUsuario(
-            @WebParam(name = "systemUser") SystemUser user) {
+            @WebParam(name = "SystemUser") SystemUser user) {
         MongoClient client = new MongoClient(uri);
         try {
             SystemUserDao.cadastrarUsuario(user, getConnetcion(client));
@@ -41,7 +41,8 @@ public class SystemUserServiceImpl extends ServiceBase implements SystemUserServ
 
     @Override
     @WebResult(name = "Resultado")
-    public void alterarUsuario(SystemUser user) {
+    public void alterarUsuario(
+            @WebParam(name = "SystemUser") SystemUser user) {
         MongoClient client = new MongoClient(uri);
         try {
             SystemUserDao.alterarUsuario(user, getConnetcion(client));
@@ -56,7 +57,7 @@ public class SystemUserServiceImpl extends ServiceBase implements SystemUserServ
     @Override
     @WebResult(name = "Resultado")
     public void excluirUsuario(
-            @WebParam(name = "systemUser") SystemUser user) {
+            @WebParam(name = "SystemUser") SystemUser user) {
         MongoClient client = new MongoClient(uri);
         try {
             SystemUserDao.excluirUsuario(user, getConnetcion(client));

@@ -1,17 +1,22 @@
 package br.com.card_editor.entity;
 
-import br.com.card_editor.annotation.Coluna;
+import br.com.card_editor.annotation.Column;
 import br.com.card_editor.annotation.ID;
-import br.com.card_editor.annotation.Tabela;
+import br.com.card_editor.annotation.Table;
 import br.com.card_editor.util.EntityBase;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
-@Tabela(collectionName = "SystemUser")
+@Table(collectionName = "SYSTEM_USER")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "SystemUser")
 public class SystemUser extends EntityBase {
 
     @ID
     private String userName;
 
-    @Coluna(name = "userPassword")
+    @Column(name = "userPassword")
     private String userPassword;
 
     public String getUserName() {

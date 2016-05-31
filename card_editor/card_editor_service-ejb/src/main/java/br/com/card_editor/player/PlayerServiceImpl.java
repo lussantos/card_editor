@@ -40,7 +40,8 @@ public class PlayerServiceImpl extends ServiceBase implements PlayerService {
 
     @Override
     @WebResult(name = "Resultado")
-    public void alterarPlayer(Player player) {
+    public void alterarPlayer(
+            @WebParam(name = "player") Player player) {
         MongoClient client = new MongoClient(uri);
         try {
             PlayerDao.alterarPlayer(player, getConnetcion(client));

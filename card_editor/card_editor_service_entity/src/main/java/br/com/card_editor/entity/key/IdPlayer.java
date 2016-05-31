@@ -5,20 +5,20 @@
  */
 package br.com.card_editor.entity.key;
 
-import br.com.card_editor.annotation.Coluna;
-import br.com.card_editor.annotation.Tabela;
+import br.com.card_editor.annotation.Column;
+import br.com.card_editor.annotation.Table;
 
 /**
  *
  * @author lucas.santos
  */
-@Tabela(collectionName = "IdPlayer")
+@Table(collectionName = "IdPlayer")
 public class IdPlayer {
 
-    @Coluna(name = "nick_name")
+    @Column(name = "nick_name")
     private String nick_name;
 
-    @Coluna(name = "tp_conta")
+    @Column(name = "tp_conta")
     private String tp_conta;
 
     public String getNick_name() {

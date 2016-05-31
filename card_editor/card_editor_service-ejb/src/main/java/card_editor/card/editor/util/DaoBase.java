@@ -5,11 +5,6 @@
  */
 package card_editor.card.editor.util;
 
-
-import br.com.card_editor.util.EntityBase;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-
 /**
  *
  * @author lucas.santos

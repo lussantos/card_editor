@@ -5,7 +5,7 @@
  */
 package card_editor.card.editor.ejb.dao;
 
-import br.com.card_editor.annotation.Tabela;
+import br.com.card_editor.annotation.Table;
 import br.com.card_editor.entity.SystemUser;
 import card_editor.card.editor.util.DaoBase;
 import com.mongodb.BasicDBObject;
@@ -20,7 +20,7 @@ import java.lang.instrument.IllegalClassFormatException;
 public class SystemUserDao extends DaoBase {
 
     public static void cadastrarUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException {
-        MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Tabela.class).collectionName());
+        MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
         if (collection.count(new BasicDBObject("userName", user.getUserName())) <= 0) {
             user.insert(db);
         } else {

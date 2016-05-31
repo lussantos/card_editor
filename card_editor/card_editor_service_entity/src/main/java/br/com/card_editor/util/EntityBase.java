@@ -5,10 +5,10 @@
  */
 package br.com.card_editor.util;
 
-import br.com.card_editor.annotation.Coluna;
+import br.com.card_editor.annotation.Column;
 import br.com.card_editor.annotation.ID;
-import br.com.card_editor.annotation.IDComposto;
-import br.com.card_editor.annotation.Tabela;
+import br.com.card_editor.annotation.ComposedID;
+import br.com.card_editor.annotation.Table;
 import br.com.card_editor.annotation.Transient;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
@@ -22,7 +22,6 @@ import org.bson.Document;
  *
  * @author lucas.santos
  */
-@Tabela(collectionName = "EntityBase")
 public abstract class EntityBase implements Serializable {
 
     private final String ID_COLUMN = "_id";
@@ -30,20 +29,20 @@ public abstract class EntityBase implements Serializable {
     public void insert(MongoDatabase db) throws IllegalAccessException {
         Document doc = new Document();
         for (Field f : this.getClass().getDeclaredFields()) {
-            if (f.isAnnotationPresent(Coluna.class)) {
+            if (f.isAnnotationPresent(Column.class)) {
                 f.setAccessible(Boolean.TRUE);
-                doc.put(f.getAnnotation(Coluna.class).name(), f.get(this));
+                doc.put(f.getAnnotation(Column.class).name(), f.get(this));
                 f.setAccessible(Boolean.FALSE);
             } else if (f.isAnnotationPresent(ID.class)) {
                 f.setAccessible(Boolean.TRUE);
                 doc.put(ID_COLUMN, f.get(this));
                 f.setAccessible(Boolean.FALSE);
-            } else if (f.isAnnotationPresent(IDComposto.class)) {
+            } else if (f.isAnnotationPresent(ComposedID.class)) {
                 Document key = new Document();
                 f.setAccessible(Boolean.TRUE);
                 for (Field k : f.get(this).getClass().getDeclaredFields()) {
                     k.setAccessible(Boolean.TRUE);
-                    key.put(k.getAnnotation(Coluna.class).name(), k.get(f.get(this)));
+                    key.put(k.getAnnotation(Column.class).name(), k.get(f.get(this)));
                     k.setAccessible(Boolean.FALSE);
                 }
                 f.setAccessible(Boolean.FALSE);
@@ -54,7 +53,7 @@ public abstract class EntityBase implements Serializable {
                 f.setAccessible(Boolean.FALSE);
             }
         }
-        MongoCollection collection = db.getCollection(getClass().getAnnotation(Tabela.class).collectionName());
+        MongoCollection collection = db.getCollection(getClass().getAnnotation(Table.class).collectionName());
         collection.insertOne(doc);
     }
 
@@ -63,9 +62,9 @@ public abstract class EntityBase implements Serializable {
         Document query = new Document();
         boolean possuiId = Boolean.FALSE;
         for (Field f : this.getClass().getDeclaredFields()) {
-            if (f.isAnnotationPresent(Coluna.class)) {
+            if (f.isAnnotationPresent(Column.class)) {
                 f.setAccessible(Boolean.TRUE);
-                doc.put(f.getAnnotation(Coluna.class).name(), f.get(this));
+                doc.put(f.getAnnotation(Column.class).name(), f.get(this));
                 f.setAccessible(Boolean.FALSE);
             } else if (f.isAnnotationPresent(ID.class)) {
                 possuiId = Boolean.TRUE;
@@ -73,12 +72,12 @@ public abstract class EntityBase implements Serializable {
                 query.put(ID_COLUMN, f.get(this));
                 doc.put(ID_COLUMN, f.get(this));
                 f.setAccessible(Boolean.FALSE);
-            } else if (f.isAnnotationPresent(IDComposto.class)) {
+            } else if (f.isAnnotationPresent(ComposedID.class)) {
                 Document key = new Document();
                 f.setAccessible(Boolean.TRUE);
                 for (Field k : f.get(this).getClass().getDeclaredFields()) {
                     k.setAccessible(Boolean.TRUE);
-                    key.put(k.getAnnotation(Coluna.class).name(), k.get(f.get(this)));
+                    key.put(k.getAnnotation(Column.class).name(), k.get(f.get(this)));
                     k.setAccessible(Boolean.FALSE);
                 }
                 doc.put(ID_COLUMN, key);
@@ -90,10 +89,10 @@ public abstract class EntityBase implements Serializable {
                 f.setAccessible(Boolean.FALSE);
             }
         }
-         
+
         if (possuiId) {
-            MongoCollection collection = db.getCollection(getClass().getAnnotation(Tabela.class).collectionName());
-            BasicDBObject set = new BasicDBObject("$set",doc);
+            MongoCollection collection = db.getCollection(getClass().getAnnotation(Table.class).collectionName());
+            BasicDBObject set = new BasicDBObject("$set", doc);
             collection.updateMany(query, set);
         } else {
             throw new IllegalClassFormatException("É obrigatória a definição de uma chave primária");
@@ -109,12 +108,12 @@ public abstract class EntityBase implements Serializable {
                 f.setAccessible(Boolean.TRUE);
                 query.put(ID_COLUMN, f.get(this));
                 f.setAccessible(Boolean.FALSE);
-            } else if (f.isAnnotationPresent(IDComposto.class)) {
+            } else if (f.isAnnotationPresent(ComposedID.class)) {
                 Document key = new Document();
                 f.setAccessible(Boolean.TRUE);
                 for (Field k : f.get(this).getClass().getDeclaredFields()) {
                     k.setAccessible(Boolean.TRUE);
-                    key.put(k.getAnnotation(Coluna.class).name(), k.get(f.get(this)));
+                    key.put(k.getAnnotation(Column.class).name(), k.get(f.get(this)));
                     k.setAccessible(Boolean.FALSE);
                 }
                 f.setAccessible(Boolean.FALSE);
@@ -123,7 +122,7 @@ public abstract class EntityBase implements Serializable {
             }
         }
         if (possuiId) {
-            MongoCollection collection = db.getCollection(getClass().getAnnotation(Tabela.class).collectionName());
+            MongoCollection collection = db.getCollection(getClass().getAnnotation(Table.class).collectionName());
             collection.deleteOne(query);
         } else {
             throw new IllegalClassFormatException("É obrigatória a definição de uma chave primária");

@@ -5,8 +5,8 @@
  */
 package br.com.card_editor.entity;
 
-import br.com.card_editor.annotation.IDComposto;
-import br.com.card_editor.annotation.Tabela;
+import br.com.card_editor.annotation.ComposedID;
+import br.com.card_editor.annotation.Table;
 import br.com.card_editor.entity.key.IdPlayer;
 import br.com.card_editor.util.EntityBase;
 
@@ -14,10 +14,10 @@ import br.com.card_editor.util.EntityBase;
  *
  * @author lucas.santos
  */
-@Tabela(collectionName = "Player")
+@Table(collectionName = "PLAYER")
 public class Player extends EntityBase {
 
-    @IDComposto
+    @ComposedID
     private IdPlayer idPlayer;
     
     private String descricao;
