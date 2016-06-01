@@ -1,18 +1,24 @@
-//this.load('../public_html/menu.html');"
+$('.alert-success').hide();
+$('.alert-danger').hide();
 function salvarUsuario() {
-    jQuery.support.cors = true;
-    var wsUrl = "http://" + window.location.hostname + ":7004/SystemAccountServiceImpl/SysteAcountService?WSDL";
-    var soapRequest = createSoapRequest('criarContaUsuario', 'InSalvarUsuarioPlayer');
-    $.ajax({
-        crossDomain: false,
-        type: "POST",
-        url: wsUrl,
-        contentType: "text/xml",
-        dataType: "xml",
-        data: soapRequest,
-        success: processSuccess,
-        error: processError
-    });
+    if ($('#resp_user').text === 'Usuário já existe' || $('#resp_user').text === 'Favor selecionar um usupario válido.' || document.getElementById("name").value === '') {
+        $('#resp_user').text('Favor selecionar um usuário válido.');
+        window.scrollTo(0, 0);
+    } else {
+        jQuery.support.cors = true;
+        var wsUrl = "http://" + window.location.hostname + ":7004/SystemAccountServiceImpl/SysteAcountService?WSDL";
+        var soapRequest = createSoapRequest('criarContaUsuario', 'InSalvarUsuarioPlayer');
+        $.ajax({
+            crossDomain: false,
+            type: "POST",
+            url: wsUrl,
+            contentType: "text/xml",
+            dataType: "xml",
+            data: soapRequest,
+            success: processSuccess,
+            error: processError
+        });
+    }
 }
 
 function createSoapRequest(method, parameterClass) {
@@ -42,25 +48,27 @@ function createSoapRequest(method, parameterClass) {
     return a.toString();
 }
 function verificaUsuario() {
-    jQuery.support.cors = true;
-    var wsUrl = "http://" + window.location.hostname + ":7004/SystemUserServiceImpl/SystemUserService?WSDL";
-    var soapRequest = createSoapRequestSimgleParameter('verificaExistenciaUsuario', 'SystemUser', [['userName', document.getElementById("usr").value]]);
-    $.ajax({
-        crossDomain: false,
-        type: "POST",
-        url: wsUrl,
-        contentType: "text/xml",
-        dataType: "xml",
-        data: soapRequest,
-        success: processSuccessVerification,
-        error: processError
-    });
+    if (document.getElementById("usr") !== null && document.getElementById("usr").value !== "") {
+        jQuery.support.cors = true;
+        var wsUrl = "http://" + window.location.hostname + ":7004/SystemUserServiceImpl/SystemUserService?WSDL";
+        var soapRequest = createSoapRequestSimgleParameter('verificaExistenciaUsuario', 'SystemUser', 'system_user', [['userName', document.getElementById("usr").value]]);
+        $.ajax({
+            crossDomain: false,
+            type: "POST",
+            url: wsUrl,
+            contentType: "text/xml",
+            dataType: "xml",
+            data: soapRequest,
+            success: processSuccessVerification,
+            error: processError
+        });
+    }
 }
-function createSoapRequestSimgleParameter(method, parameterClass, parameterValue) {
+function createSoapRequestSimgleParameter(method, parameterClass, packageName, parameterValue) {
 
     var a = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
             "<soap:Body>" +
-            "<ns1:" + method + " xmlns:ns1=" + '"' + "http://system_user.ejb.card_editor.com.br/" + "" + '"' + "" + ">";
+            "<ns1:" + method + " xmlns:ns1=" + '"' + "http://" + packageName + ".ejb.card_editor.com.br/" + "" + '"' + "" + ">";
     a += "<" + parameterClass + ">";
     for (var n = 0; n < parameterValue.length; n++) {
         a += "<" + parameterValue[n][0] + ">" + parameterValue[n][1] + "</" + parameterValue[n][0] + ">";
@@ -73,16 +81,21 @@ function createSoapRequestSimgleParameter(method, parameterClass, parameterValue
 }
 
 function processSuccessVerification(data, status, req) {
-    if(data.constains("true")>= 0){
+    if ($(req.responseXML).find("existe").text() === "true") {
         $('#resp_user').text('Usuário já existe');
+    } else {
+        $('#resp_user').text('Usuário válido!');
     }
 }
 
 
 function processSuccess(data, status, req) {
-    if (status === "success")
-        $("#resposta").text($(req.responseXML).find("HelloResult").text());
+    if (status === "success") {
+        $('#successMessage').text("Salvo com sucesso!");
+         $('#resp_user').text('');
+    }
 }
 
 function processError(data, status, req) {
+
 }

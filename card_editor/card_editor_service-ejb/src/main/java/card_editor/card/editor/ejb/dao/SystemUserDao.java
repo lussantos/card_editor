@@ -38,7 +38,7 @@ public class SystemUserDao extends DaoBase {
 
     public static boolean verificaExistenciaUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
         MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
-        return collection.find(new BasicDBObject("userName", user.getUserName())).iterator().hasNext();
+        return collection.find(new BasicDBObject("_id", user.getUserName())).iterator().hasNext();
     }
 
     public static boolean verificaAcessoUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
