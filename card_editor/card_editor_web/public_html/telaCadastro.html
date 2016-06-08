@@ -55,53 +55,58 @@
         </nav>
         <div id="successMessage"></div>
         <div style="margin-left:1%">
-            <div>
-                <label for="usr">Nome:*</label>
-                <input type="text" class="form-control input-cad" id="name">
-            </div>
-            <div>
-                <label for="usr">Nome de usuário(para acesso à aplicação):*</label>
-                <input type="text" class="form-control input-cad" id="usr">
-                <div id="resp_user"></div>
-            </div>
-            <script>
-                $("#usr")
-                        .focusout(function () {
-                            verificaUsuario();
-                        })
-                        .blur(function () {
-                        });
-            </script>
-            <div>
-                <label for="pwd">Senha:*</label>
-                <input type="password" class="form-control input-cad" id="pwd">
-            </div>
-
-            <div>
-                <label for="usr">Descrição:</label>
-                <input type="text" class="form-control input-cad" id="desc">
-            </div>
-
-            <div>
-                <label for="usr">Email:</label>
-                <input type="text" class="form-control input-cad" id="email">
-            </div>
-
-            <div>
-                <label for="usr">Data de nascimento:</label>
-                <div>
-                    <input type="date" name="bday" class="form-control input-cad" id="bday">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="usr">Nome:*</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="col-md-4">
+                    <label for="usr">Nome de usuário(para acesso à aplicação):*</label>
+                    <input type="text" class="form-control" id="usr">
+                    <div id="resp_user"></div>
+                </div>
+                <script>
+                    $("#usr")
+                            .focusout(function () {
+                                verificaUsuario();
+                            })
+                            .blur(function () {
+                            });
+                </script>
+                <div class="col-md-4">
+                    <label for="pwd">Senha:*</label>
+                    <input type="password" class="form-control" id="pwd">
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="usr">Descrição:</label>
+                    <input type="text" class="form-control" id="desc">
+                </div>
 
-            <div>
-                <label for="usr">Url da imagem do usuário:</label>
-                <div>
-                    <input type="url" class="form-control input-cad" id="img">
+                <div class="col-md-4">
+                    <label for="usr">Email:</label>
+                    <input type="text" class="form-control" id="email">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="usr">Data de nascimento:</label>
+                    <div>
+                        <input type="date" name="bday" class="form-control" id="bday">
+                    </div>
                 </div>
             </div>
-
-            <button type="button" class="btn btn-primary" style="display:block" onclick="salvarUsuario()">Efetuar Cadastro</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="usr">Url da imagem do usuário:</label>
+                    <div>
+                        <input type="url" class="form-control" id="img">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary" style="display:block" onclick="salvarUsuario()">Efetuar Cadastro</button>
+            </div>
         </div>
     </body>
 
