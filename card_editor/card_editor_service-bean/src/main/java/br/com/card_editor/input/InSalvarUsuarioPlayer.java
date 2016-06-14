@@ -5,6 +5,8 @@
  */
 package br.com.card_editor.input;
 
+import br.com.card_editor.bean.PlayerBean;
+import br.com.card_editor.bean.SystemUserBean;
 import java.io.Serializable;
 
 /**

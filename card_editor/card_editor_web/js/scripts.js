@@ -1,5 +1,4 @@
-$('.alert-success').hide();
-$('.alert-danger').hide();
+
 function salvarUsuario() {
     if ($('#resp_user').text === 'Usuário já existe' || $('#resp_user').text === 'Favor selecionar um usupario válido.' || document.getElementById("name").value === '') {
         $('#resp_user').text('Favor selecionar um usuário válido.');
@@ -9,7 +8,7 @@ function salvarUsuario() {
         var wsUrl = "http://" + window.location.hostname + ":7004/SystemAccountServiceImpl/SysteAcountService?WSDL";
         var soapRequest = createSoapRequest('criarContaUsuario', 'InSalvarUsuarioPlayer');
         $.ajax({
-            crossDomain: false,
+            crossDomain: true,
             type: "POST",
             url: wsUrl,
             contentType: "text/xml",
@@ -51,9 +50,9 @@ function verificaUsuario() {
     if (document.getElementById("usr") !== null && document.getElementById("usr").value !== "") {
         jQuery.support.cors = true;
         var wsUrl = "http://" + window.location.hostname + ":7004/SystemUserServiceImpl/SystemUserService?WSDL";
-        var soapRequest = createSoapRequestSimgleParameter('verificaExistenciaUsuario', 'SystemUser', 'system_user', [['userName', document.getElementById("usr").value]]);
+        var soapRequest = createSoapRequestSingleParameter('verificaExistenciaUsuario', 'SystemUser', 'system_user', [['userName', document.getElementById("usr").value]]);
         $.ajax({
-            crossDomain: false,
+            crossDomain: true,
             type: "POST",
             url: wsUrl,
             contentType: "text/xml",
@@ -64,7 +63,7 @@ function verificaUsuario() {
         });
     }
 }
-function createSoapRequestSimgleParameter(method, parameterClass, packageName, parameterValue) {
+function createSoapRequestSingleParameter(method, parameterClass, packageName, parameterValue) {
 
     var a = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
             "<soap:Body>" +
@@ -79,6 +78,51 @@ function createSoapRequestSimgleParameter(method, parameterClass, packageName, p
             "</soap:Envelope>";
     return a.toString();
 }
+var imageData;
+function uploadCard() {
+    var fileList = new Array();
+    fileList = document.getElementById("file").files;
+    var fr = new FileReader();
+    if (FileReader && fileList && fileList.length) {
+        fr.readAsArrayBuffer(fileList[0]);
+        imageData = fr.result;
+    }
+
+    jQuery.support.cors = true;
+    var wsUrl = "http://" + window.location.hostname + ":7004/CardServiceImpl/CardService?WSDL";
+    var soapRequest = crateCardSoapRequest(document.getElementById("file").files[0]);
+    $.ajax({
+        crossDomain: true,
+        type: "POST",
+        url: wsUrl,
+        contentType: "text/xml",
+        dataType: "xml",
+        data: soapRequest,
+        success: processSuccess,
+        error: processError
+    });
+}
+
+function crateCardSoapRequest(input) {
+
+    var req = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
+            "<soap:Body>" +
+            "<ns1:uploadCard xmlns:ns1=" + '"' + " http://card.ejb.card_editor.com.br/" + '"' + ">" +
+            "<arg0>" +
+            "<cardBean>"+
+    "<description>StringValue</description>" +
+            "<id>23</id>" +
+            "<name>StringValue</name>" +
+             "<file>" + input + "</file>" +
+            "<template>" + "</template>" +
+            "</cardBean>" +
+            "<nickNameUser>lucas_santos</nickNameUser>" +
+            "</arg0>" +
+            "</ns1:uploadCard>" +
+            "</soap:Body>" +
+            "</soap:Envelope>";
+
+}
 
 function processSuccessVerification(data, status, req) {
     if ($(req.responseXML).find("existe").text() === "true") {
@@ -92,10 +136,16 @@ function processSuccessVerification(data, status, req) {
 function processSuccess(data, status, req) {
     if (status === "success") {
         $('#successMessage').text("Salvo com sucesso!");
-         $('#resp_user').text('');
+        $('#resp_user').text('');
     }
 }
 
 function processError(data, status, req) {
+    toastr.error('Erro ao executar consulta!');
+}
 
+function convertBase64() {
+    var inflate = new Zlib.Gunzip(document.getElementById('file').files[0]);
+    var plain = inflate.decompress();
+    window.open(plain);
 }

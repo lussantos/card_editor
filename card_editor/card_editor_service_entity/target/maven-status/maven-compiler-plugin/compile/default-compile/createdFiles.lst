@@ -1,5 +1,6 @@
 br\com\card_editor\annotation\Column.class
 br\com\card_editor\entity\Player.class
+br\com\card_editor\entity\Card.class
 br\com\card_editor\annotation\Table.class
 br\com\card_editor\entity\SystemUser.class
 br\com\card_editor\entity\Link.class

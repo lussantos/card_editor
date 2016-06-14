@@ -18,8 +18,8 @@ public class ServiceBase {
     protected final MongoClientURI uri = new MongoClientURI("mongodb://developer:developer@ds053874.mlab.com:53874/card_set_db");
 
     protected MongoDatabase getConnetcion(MongoClient client) {
-        MongoDatabase db = client.getDatabase(uri.getDatabase());
-        return db;
+//        MongoDatabase db = client.getDatabase(uri.getDatabase());
+        return null;
     }
 
 }
