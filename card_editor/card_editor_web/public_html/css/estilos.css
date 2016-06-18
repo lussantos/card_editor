@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/06/2016, 18:46:28
+    Author     : lucas.santos
+*/
+.input-cad {
+    width: 85%;
+    max-width: 240px;
+    margin-left: 1%;
+}
+
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.div-account {
+    float: right;
+    color: #ffffff;
+    text-align: center;
+}
+
+.panel-input {
+    margin-left:0.2%;
+    margin-right:0.2%;
+}
+
+@media screen and (max-width:768px){
+    .div-account{
+        color: #ffffff;
+        float: left;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 768px ) {
+    input {
+        max-width: 400px;
+    }
+}

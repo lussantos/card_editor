@@ -1,6 +1,7 @@
-$(document).ready(function() {
-    $('#menu').load('cabeacalho.html');
+$(document).ready(function () {
+    $('#menu').load('cabecalho.html');
 });
+
 function salvarUsuario() {
     if ($('#resp_user').text === 'Usuário já existe' || $('#resp_user').text === 'Favor selecionar um usupario válido.' || document.getElementById("name").value === '') {
         $('#resp_user').text('Favor selecionar um usuário válido.');
@@ -93,7 +94,7 @@ function processSuccessVerification(data, status, req) {
 function processSuccess(data, status, req) {
     if (status === "success") {
         $('#successMessage').text("Salvo com sucesso!");
-         $('#resp_user').text('');
+        $('#resp_user').text('');
     }
 }
 
