@@ -1,5 +1,6 @@
-$('.alert-success').hide();
-$('.alert-danger').hide();
+$(document).ready(function() {
+    $('#menu').load('cabeacalho.html');
+});
 function salvarUsuario() {
     if ($('#resp_user').text === 'Usuário já existe' || $('#resp_user').text === 'Favor selecionar um usupario válido.' || document.getElementById("name").value === '') {
         $('#resp_user').text('Favor selecionar um usuário válido.');

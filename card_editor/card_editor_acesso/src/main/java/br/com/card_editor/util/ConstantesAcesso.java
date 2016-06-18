@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class ConstantesAcesso implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final String APP_NAME = "card_editor_web";
-    public static final String FILE_NAME_LOG = "log4j.properties";
-    public static final String FILE_NAME_LOCATOR = "card-editor-locate.properties";
+    public static final String CARD_SERVICE_LOCALIZATION = "";
+    
 }
