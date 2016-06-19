@@ -38,14 +38,19 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <label for="usr">Nome de usuário:*</label>
-            <input type="text" class="form-control" id="usr">
-            <div id="resp_user"></div>
+        <div class="row panel-input">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <label for="usr">Nome de usuário:*</label>
+                <input type="text" class="form-control" id="usr">
+                <div id="resp_user"></div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <label for="pwd">Senha:*</label>
+                <input type="password" class="form-control" id="pwd">
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <label for="pwd">Senha:*</label>
-            <input type="password" class="form-control" id="pwd">
-        </div>
+        <div class="row panel-input col-sm-12 col-md-12 col-lg-12">
+            <button type="button" class="btn btn-primary" onclick="efetuarLogin()">Efetuar Cadastro</button>
+        </div>  
     </body>
 </html>
