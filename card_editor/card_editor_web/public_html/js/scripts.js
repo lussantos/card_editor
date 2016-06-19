@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#menu').load('cabecalho.html');
-   
+
 });
 
 function salvarUsuario() {
