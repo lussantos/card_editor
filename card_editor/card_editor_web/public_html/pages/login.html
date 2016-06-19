@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html lang="pt">
-
     <head>
 
         <meta charset="utf-8">
@@ -33,14 +37,15 @@
         <![endif]-->
 
     </head>
-
     <body>
-        <div id="menu" ></div>
-        <label for="usr">Base64:</label>
-        <input type="file" class="form-control input-cad" id="file">
-
-        <button type="button" class="btn btn-primary" style="display:block" onclick="uploadCard()">Upload Card</button>
-
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <label for="usr">Nome de usuário:*</label>
+            <input type="text" class="form-control" id="usr">
+            <div id="resp_user"></div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <label for="pwd">Senha:*</label>
+            <input type="password" class="form-control" id="pwd">
+        </div>
     </body>
-
 </html>

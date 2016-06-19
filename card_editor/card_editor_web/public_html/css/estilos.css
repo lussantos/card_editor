@@ -27,7 +27,12 @@ footer {
     color: #ffffff;
     text-align: center;
 }
-
+@media (min-width: 768px){
+    .div-account {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
 .panel-input {
     margin-left:0.2%;
     margin-right:0.2%;
@@ -35,8 +40,10 @@ footer {
 
 @media screen and (max-width:768px){
     .div-account{
+        width: 100%;
         color: #ffffff;
         float: left;
+        text-align: center;
     }
 }
 @media screen and (min-width: 400px) and (max-width: 768px ) {

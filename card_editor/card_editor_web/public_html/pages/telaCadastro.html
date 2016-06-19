@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
-    <head>
+   <head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="Lucas Schunk">
 
         <title>Card Editor Forum</title>
 
         <script src="../js/jquery-2.2.4.min.js"></script> 
+        <script src="../js/angular.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/gunzip.min.js"></script>
-        <script src="../js/gzip.min.js"></script>
         <script src="../js/toastr.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
         <script src="../js/scripts.js"></script>
 
+        <!-- Bootstrap Core CSS -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/toastr.min.css" rel="stylesheet">
-        <link href="../css/estilos.css" rel="stylesheet">
 
+        <link href="../css/bootstrap.css" rel="stylesheet">
+
+        <link href="../css/estilos.css" rel="stylesheet">
+        <link href="../css/toastr.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -29,25 +32,10 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-    </head>
+   </head>
 
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="index.html">Forum</a>
-                        </li>
-                        <li>
-                            <a href="telaCadastro.html">Cadastro</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
+        <div id="menu" ></div>
         <div id="successMessage"></div>
         <div class="row panel-input">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -61,11 +49,11 @@
             </div>
             <script>
                 $("#usr")
-                        .focusout(function () {
-                            verificaUsuario();
-                        })
-                        .blur(function () {
-                        });
+                    .focusout(function () {
+                        verificaUsuario();
+                    })
+                    .blur(function () {
+                    });
             </script>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                 <label for="pwd">Senha:*</label>
@@ -96,7 +84,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12">
             <button type="button" class="btn btn-primary" onclick="salvarUsuario()">Efetuar Cadastro</button>
-        </div>
+        </div>  
     </body>
 
 </html>
