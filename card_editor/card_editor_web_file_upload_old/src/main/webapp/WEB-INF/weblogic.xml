@@ -4,5 +4,5 @@
     <keepgenerated>true</keepgenerated>
     <debug>true</debug>
   </jsp-descriptor>
-  <context-root>/card_editor_web_file_upload2</context-root>
+  <context-root>/card_editor_web_file_upload</context-root>
 </weblogic-web-app>

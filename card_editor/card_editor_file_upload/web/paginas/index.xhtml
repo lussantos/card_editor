@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Upload Page</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    </h:head>
+    <h:body>
+        <h:form enctype="multipart/form-data">
+            <p:growl id="messages" />
+            <h1>
+                Faça o Upload da sua carta
+            </h1>
+            <p:fileUpload fileUploadListener="#{cardMB.uploadFile}"
+                          mode="advanced" 
+                          dragDropSupport="true" process="@this"
+                          update="messages"
+                          allowTypes="/(\.|\/)(tgz)$/" />
+
+            <script src="../js/script-upload.js"></script>
+        </h:form>
+    </h:body>
+</html>
+

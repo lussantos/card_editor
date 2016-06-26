@@ -102,3 +102,7 @@ function processSuccess(data, status, req) {
 function processError(data, status, req) {
 
 }
+
+function getHostLink(){
+    return window.location.hostname;
+}

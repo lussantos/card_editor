@@ -5,16 +5,13 @@
  */
 package br.com.card_editor.ejb.card;
 
-import br.com.card_editor.ejb.system_user.SystemUserServiceImpl;
 import br.com.card_editor.entity.Card;
-import br.com.card_editor.entity.SystemUser;
 import br.com.card_editor.input.InSalvarCard;
 import card_editor.card.editor.ejb.dao.CardDao;
-import card_editor.card.editor.ejb.dao.SystemUserDao;
 import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -30,6 +27,17 @@ public class CardServiceImpl extends ServiceBase implements CardService {
 
     @Override
     public void uploadCard(InSalvarCard inSalvarCard) {
+        try {
+            File path = new File("pastaCard2");
+            path.mkdir();
+            path.createNewFile();
+            File file2 = new File(path, "card.tgz");
+            FileOutputStream fos = new FileOutputStream(file2);
+            fos.write(inSalvarCard.getCardBean().getTemplate());
+            fos.close();
+        } catch (Exception e) {
+
+        }
         MongoClient client = new MongoClient(uri);
         try {
             CardDao.uploadCard(convertCard(inSalvarCard), getConnetcion(client));
