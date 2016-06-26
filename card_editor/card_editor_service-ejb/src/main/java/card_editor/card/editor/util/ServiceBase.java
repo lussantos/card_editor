@@ -19,7 +19,6 @@ public class ServiceBase {
 
     protected MongoDatabase getConnetcion(MongoClient client) {
 //        MongoDatabase db = client.getDatabase(uri.getDatabase());
-//        return db;
         return null;
     }
 

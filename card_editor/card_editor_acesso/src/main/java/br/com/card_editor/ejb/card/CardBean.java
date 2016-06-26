@@ -4,7 +4,6 @@ package br.com.card_editor.ejb.card;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -19,7 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="file" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="template" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
@@ -34,7 +32,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "cardBean", propOrder = {
     "description",
-    "file",
     "id",
     "name",
     "template"
@@ -44,8 +41,6 @@ public class CardBean
 {
 
     protected String description;
-    @XmlSchemaType(name = "anySimpleType")
-    protected Object file;
     protected Long id;
     protected String name;
     protected byte[] template;
@@ -72,30 +67,6 @@ public class CardBean
      */
     public void setDescription(String value) {
         this.description = value;
-    }
-
-    /**
-     * Gets the value of the file property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
-     */
-    public Object getFile() {
-        return file;
-    }
-
-    /**
-     * Sets the value of the file property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
-     */
-    public void setFile(Object value) {
-        this.file = value;
     }
 
     /**

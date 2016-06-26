@@ -43,19 +43,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InSalvarCard }
-     * 
-     */
-    public InSalvarCard createInSalvarCard() {
-        return new InSalvarCard();
-    }
-
-    /**
      * Create an instance of {@link CardBean }
      * 
      */
     public CardBean createCardBean() {
         return new CardBean();
+    }
+
+    /**
+     * Create an instance of {@link InSalvarCard }
+     * 
+     */
+    public InSalvarCard createInSalvarCard() {
+        return new InSalvarCard();
     }
 
     /**
