@@ -5,7 +5,7 @@
 
                 ga('create', 'UA-79906529-1', 'auto');
                 ga('send', 'pageview');
-                
+                ga('set', 'userId',$.cookie("userName"));
 $(document).ready(function () {
     $('#menu').load('cabecalho.html');
 });
