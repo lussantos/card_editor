@@ -6,6 +6,7 @@
 package br.com.card_editor.acesso;
 
 import br.com.card_editor.ejb.card.CardServiceImpl;
+import br.com.card_editor.ejb.card.Exception_Exception;
 import br.com.card_editor.ejb.card.InSalvarCard;
 import br.com.card_editor.locate.CardServiceLocate;
 
@@ -21,8 +22,8 @@ public class CardServiceAcesso {
         this.service = new CardServiceLocate().get();
     }
 
-    public void uploadImage(InSalvarCard inSalvarCard) {
-        this.service.uploadCard(inSalvarCard);
+    public void uploadImage(InSalvarCard inSalvarCard) throws Exception_Exception {
+        this.service.insertCard(inSalvarCard);
     }
     
 }

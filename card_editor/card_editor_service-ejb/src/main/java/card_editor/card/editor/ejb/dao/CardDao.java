@@ -15,7 +15,7 @@ import com.mongodb.client.MongoDatabase;
  */
 public class CardDao extends DaoBase {
 
-    public static void uploadCard(Card card, MongoDatabase db) throws IllegalAccessException {
+    public static void insertCard(Card card, MongoDatabase db) throws IllegalAccessException {
         card.insert(db);
     }
 }

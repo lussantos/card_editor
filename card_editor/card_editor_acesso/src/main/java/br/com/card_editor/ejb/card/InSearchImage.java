@@ -8,18 +8,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for inSalvarCard complex type.
+ * <p>Java class for inSearchImage complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="inSalvarCard">
+ * &lt;complexType name="inSearchImage">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="template" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="cardName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="idPost" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="imageQuality" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="userName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -30,89 +30,91 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "inSalvarCard", propOrder = {
-    "description",
-    "name",
-    "template",
+@XmlType(name = "inSearchImage", propOrder = {
+    "cardName",
+    "idPost",
+    "imageQuality",
     "userName"
 })
-public class InSalvarCard
+public class InSearchImage
     implements Serializable
 {
 
-    protected String description;
-    protected String name;
-    protected byte[] template;
+    protected String cardName;
+    protected Long idPost;
+    protected Long imageQuality;
     protected String userName;
 
     /**
-     * Gets the value of the description property.
+     * Gets the value of the cardName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getDescription() {
-        return description;
+    public String getCardName() {
+        return cardName;
     }
 
     /**
-     * Sets the value of the description property.
+     * Sets the value of the cardName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setDescription(String value) {
-        this.description = value;
+    public void setCardName(String value) {
+        this.cardName = value;
     }
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the idPost property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public String getName() {
-        return name;
+    public Long getIdPost() {
+        return idPost;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the idPost property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setIdPost(Long value) {
+        this.idPost = value;
     }
 
     /**
-     * Gets the value of the template property.
+     * Gets the value of the imageQuality property.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link Long }
+     *     
      */
-    public byte[] getTemplate() {
-        return template;
+    public Long getImageQuality() {
+        return imageQuality;
     }
 
     /**
-     * Sets the value of the template property.
+     * Sets the value of the imageQuality property.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link Long }
+     *     
      */
-    public void setTemplate(byte[] value) {
-        this.template = ((byte[]) value);
+    public void setImageQuality(Long value) {
+        this.imageQuality = value;
     }
 
     /**

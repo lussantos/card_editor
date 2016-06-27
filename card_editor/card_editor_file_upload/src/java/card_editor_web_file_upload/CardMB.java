@@ -6,14 +6,15 @@
 package card_editor_web_file_upload;
 
 import br.com.card_editor.acesso.CardServiceAcesso;
-import br.com.card_editor.ejb.card.CardBean;
 import br.com.card_editor.ejb.card.InSalvarCard;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 
 /**
@@ -29,14 +30,12 @@ public class CardMB implements Serializable {
             // write the card.getInputstream() to a FileOutputStream
             CardServiceAcesso acesso = new CardServiceAcesso();
             InSalvarCard inSalvarCard = new InSalvarCard();
-            CardBean bean = new CardBean();
-            bean.setTemplate(event.getFile().getContents());
-            inSalvarCard.setCardBean(bean);
+            inSalvarCard.setTemplate(event.getFile().getContents());
             acesso.uploadImage(inSalvarCard);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception ex) {
-            Logger.getLogger(CardMB.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext.getCurrentInstance().addMessage("info", new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Sucesso ao fazer o upload do projeto."));
+        } catch (Exception e) {
+            Logger.getLogger(CardMB.class.getName()).log(Level.SEVERE, null, e);
+            FacesContext.getCurrentInstance().addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Erro ao fazer o upload do projeto."));
         } finally {
             try {
                 if (event.getFile().getInputstream() != null) {

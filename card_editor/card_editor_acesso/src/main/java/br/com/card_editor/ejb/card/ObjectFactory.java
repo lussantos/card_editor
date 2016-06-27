@@ -24,38 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _UploadCard_QNAME = new QName("http://card.ejb.card_editor.com.br/", "uploadCard");
-    private final static QName _UploadCardResponse_QNAME = new QName("http://card.ejb.card_editor.com.br/", "uploadCardResponse");
+    private final static QName _Exception_QNAME = new QName("http://card.ejb.card_editor.com.br/", "Exception");
+    private final static QName _InsertCardResponse_QNAME = new QName("http://card.ejb.card_editor.com.br/", "insertCardResponse");
+    private final static QName _InsertCard_QNAME = new QName("http://card.ejb.card_editor.com.br/", "insertCard");
+    private final static QName _SearchImageResponse_QNAME = new QName("http://card.ejb.card_editor.com.br/", "searchImageResponse");
+    private final static QName _SearchImage_QNAME = new QName("http://card.ejb.card_editor.com.br/", "searchImage");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.card_editor.ejb.card
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link CardBean }
-     * 
-     */
-    public CardBean createCardBean() {
-        return new CardBean();
-    }
-
-    /**
-     * Create an instance of {@link UploadCard }
-     * 
-     */
-    public UploadCard createUploadCard() {
-        return new UploadCard();
-    }
-
-    /**
-     * Create an instance of {@link UploadCardResponse }
-     * 
-     */
-    public UploadCardResponse createUploadCardResponse() {
-        return new UploadCardResponse();
     }
 
     /**
@@ -67,21 +46,104 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UploadCard }{@code >}}
+     * Create an instance of {@link SearchImage }
      * 
      */
-    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "uploadCard")
-    public JAXBElement<UploadCard> createUploadCard(UploadCard value) {
-        return new JAXBElement<UploadCard>(_UploadCard_QNAME, UploadCard.class, null, value);
+    public SearchImage createSearchImage() {
+        return new SearchImage();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UploadCardResponse }{@code >}}
+     * Create an instance of {@link InsertCardResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "uploadCardResponse")
-    public JAXBElement<UploadCardResponse> createUploadCardResponse(UploadCardResponse value) {
-        return new JAXBElement<UploadCardResponse>(_UploadCardResponse_QNAME, UploadCardResponse.class, null, value);
+    public InsertCardResponse createInsertCardResponse() {
+        return new InsertCardResponse();
+    }
+
+    /**
+     * Create an instance of {@link InSearchImage }
+     * 
+     */
+    public InSearchImage createInSearchImage() {
+        return new InSearchImage();
+    }
+
+    /**
+     * Create an instance of {@link CardBean }
+     * 
+     */
+    public CardBean createCardBean() {
+        return new CardBean();
+    }
+
+    /**
+     * Create an instance of {@link Exception }
+     * 
+     */
+    public Exception createException() {
+        return new Exception();
+    }
+
+    /**
+     * Create an instance of {@link InsertCard }
+     * 
+     */
+    public InsertCard createInsertCard() {
+        return new InsertCard();
+    }
+
+    /**
+     * Create an instance of {@link SearchImageResponse }
+     * 
+     */
+    public SearchImageResponse createSearchImageResponse() {
+        return new SearchImageResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Exception }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "Exception")
+    public JAXBElement<Exception> createException(Exception value) {
+        return new JAXBElement<Exception>(_Exception_QNAME, Exception.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertCardResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "insertCardResponse")
+    public JAXBElement<InsertCardResponse> createInsertCardResponse(InsertCardResponse value) {
+        return new JAXBElement<InsertCardResponse>(_InsertCardResponse_QNAME, InsertCardResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertCard }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "insertCard")
+    public JAXBElement<InsertCard> createInsertCard(InsertCard value) {
+        return new JAXBElement<InsertCard>(_InsertCard_QNAME, InsertCard.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchImageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "searchImageResponse")
+    public JAXBElement<SearchImageResponse> createSearchImageResponse(SearchImageResponse value) {
+        return new JAXBElement<SearchImageResponse>(_SearchImageResponse_QNAME, SearchImageResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchImage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://card.ejb.card_editor.com.br/", name = "searchImage")
+    public JAXBElement<SearchImage> createSearchImage(SearchImage value) {
+        return new JAXBElement<SearchImage>(_SearchImage_QNAME, SearchImage.class, null, value);
     }
 
 }

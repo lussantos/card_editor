@@ -5,7 +5,10 @@
  */
 package br.com.card_editor.ejb.card;
 
+import br.com.card_editor.bean.CardBean;
 import br.com.card_editor.input.InSalvarCard;
+import br.com.card_editor.input.InSearchImage;
+import java.util.List;
 
 /**
  *
@@ -13,6 +16,7 @@ import br.com.card_editor.input.InSalvarCard;
  */
 public interface CardService {
 
-    void uploadCard(InSalvarCard card);
+    void insertCard(InSalvarCard inSalvarCard) throws Exception;
 
+    List<CardBean> searchImage(InSearchImage inSearchImage) throws Exception;
 }

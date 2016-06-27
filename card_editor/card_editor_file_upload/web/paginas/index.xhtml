@@ -14,7 +14,7 @@
                 Faça o Upload da sua carta
             </h1>
             <p:fileUpload fileUploadListener="#{cardMB.uploadFile}"
-                          mode="advanced" 
+                          mode="advanced" multiple="false"
                           dragDropSupport="true" process="@this"
                           update="messages"
                           allowTypes="/(\.|\/)(cse-card)$/" />

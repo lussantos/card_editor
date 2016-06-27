@@ -5,7 +5,6 @@
  */
 package br.com.card_editor.input;
 
-import br.com.card_editor.bean.CardBean;
 import java.io.Serializable;
 
 /**
@@ -14,24 +13,44 @@ import java.io.Serializable;
  */
 public class InSalvarCard implements Serializable {
 
-    private CardBean cardBean;
+    private String name;
 
-    private String nickNameUser;
+    private String description;
 
-    public CardBean getCardBean() {
-        return cardBean;
+    private byte[] template;
+
+    private String userName;
+
+    public String getName() {
+        return name;
     }
 
-    public void setCardBean(CardBean cardBean) {
-        this.cardBean = cardBean;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNickNameUser() {
-        return nickNameUser;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNickNameUser(String nickNameUser) {
-        this.nickNameUser = nickNameUser;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public byte[] getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(byte[] template) {
+        this.template = template;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }

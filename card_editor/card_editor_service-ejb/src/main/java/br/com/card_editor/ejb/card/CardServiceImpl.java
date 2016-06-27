@@ -5,13 +5,17 @@
  */
 package br.com.card_editor.ejb.card;
 
+import br.com.card_editor.bean.CardBean;
 import br.com.card_editor.entity.Card;
 import br.com.card_editor.input.InSalvarCard;
+import br.com.card_editor.input.InSearchImage;
 import card_editor.card.editor.ejb.dao.CardDao;
+import card_editor.card.editor.util.CompressedFilesUtil;
 import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -32,69 +36,30 @@ import org.codehaus.plexus.logging.console.ConsoleLogger;
 public class CardServiceImpl extends ServiceBase implements CardService {
 
     @Override
-    public void uploadCard(InSalvarCard inSalvarCard) {
-        try {
-            File path = new File("pastaCard2");
-            path.mkdir();
-            if (!path.exists()) {
-                path.createNewFile();
-            }
-            File compressed = new File(path, "card.tgz");
-            FileOutputStream fos = new FileOutputStream(compressed);
-            fos.write(inSalvarCard.getCardBean().getTemplate());
-            fos.close();
-            compressed = new File(path, "card.tgz");
-        } catch (Exception e) {
-
-        }
-        try {
-            File path = new File("pastaCard2");
-            path.mkdir();
-            File compressed = new File(path, "card.tgz");
-            if (compressed.exists()) {
-
-                final UnArchiver unarchiver;
-                final ConsoleLogger consoleLogger
-                        = new ConsoleLogger(org.codehaus.plexus.logging.Logger.LEVEL_INFO, "console");
-                if (compressed.getAbsolutePath().endsWith(".tgz")
-                        || compressed.getAbsolutePath().endsWith(".tar.gz")) {
-                    unarchiver = new TarGZipUnArchiver();
-                    ((TarUnArchiver) unarchiver).enableLogging(consoleLogger);
-                } else if (compressed.getAbsolutePath().endsWith(".zip")) {
-                    unarchiver = new ZipUnArchiver();
-                    ((AbstractZipUnArchiver) unarchiver).enableLogging(consoleLogger);
-                } else {
-                    throw new RuntimeException(String
-                            .format("Compressed file must end in .zip, .tgz, or .tar.gz, but path is %s", compressed));
-                }
-
-                unarchiver.setSourceFile(compressed);
-                final File destDir = new File("card_decompressed");
-                destDir.mkdir();
-                destDir.createNewFile();
-                unarchiver.setDestDirectory(destDir);
-                unarchiver.extract();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void insertCard(InSalvarCard inSalvarCard) throws Exception {
 
         MongoClient client = new MongoClient(uri);
+        CompressedFilesUtil.convertByteFToFile(inSalvarCard.getTemplate(), "user");
+        CompressedFilesUtil.decompressArchive("user");
         try {
-            CardDao.uploadCard(convertCard(inSalvarCard), getConnetcion(client));
+            CardDao.insertCard(convertCard(inSalvarCard), getConnetcion(client));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CardServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         client.close();
     }
 
+    @Override
+    public List<CardBean> searchImage(InSearchImage inSearchImage) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private Card convertCard(InSalvarCard inSalvarCard) {
         Card card = new Card();
-        if (inSalvarCard.getCardBean() != null) {
-            card.setId(inSalvarCard.getCardBean().getId());
-            card.setDescription(inSalvarCard.getCardBean().getDescription());
-            card.setName(inSalvarCard.getCardBean().getName());
-            card.setNickName(inSalvarCard.getNickNameUser());
+        if (inSalvarCard != null) {
+            card.setDescription(inSalvarCard.getDescription());
+            card.setName(inSalvarCard.getName());
+            card.setNickName(inSalvarCard.getUserName());
         }
         return card;
 
