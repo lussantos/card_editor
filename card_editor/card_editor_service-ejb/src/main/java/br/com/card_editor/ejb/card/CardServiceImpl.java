@@ -12,7 +12,6 @@ import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
