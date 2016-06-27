@@ -35,14 +35,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UploadCardResponse }
-     * 
-     */
-    public UploadCardResponse createUploadCardResponse() {
-        return new UploadCardResponse();
-    }
-
-    /**
      * Create an instance of {@link CardBean }
      * 
      */
@@ -51,19 +43,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InSalvarCard }
-     * 
-     */
-    public InSalvarCard createInSalvarCard() {
-        return new InSalvarCard();
-    }
-
-    /**
      * Create an instance of {@link UploadCard }
      * 
      */
     public UploadCard createUploadCard() {
         return new UploadCard();
+    }
+
+    /**
+     * Create an instance of {@link UploadCardResponse }
+     * 
+     */
+    public UploadCardResponse createUploadCardResponse() {
+        return new UploadCardResponse();
+    }
+
+    /**
+     * Create an instance of {@link InSalvarCard }
+     * 
+     */
+    public InSalvarCard createInSalvarCard() {
+        return new InSalvarCard();
     }
 
     /**

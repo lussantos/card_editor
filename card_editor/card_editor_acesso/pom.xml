@@ -75,6 +75,7 @@
                             <sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
                             <wsdlUrls>
                                 <!--<wsdl>http://192.168.43.207:7004/CardServiceImpl/CardService?WSDL</wsdl>-->
+                                <!--<wsdl>http://localhost:7004/CardServiceImpl/CardService?WSDL</wsdl>-->
                             </wsdlUrls>
                             
                             <bindingFiles>

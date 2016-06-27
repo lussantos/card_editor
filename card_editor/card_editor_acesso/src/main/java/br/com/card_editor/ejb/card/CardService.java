@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "CardService", targetNamespace = "http://card.ejb.card_editor.com.br/", wsdlLocation = "http://192.168.43.207:7004/CardServiceImpl/CardService?WSDL")
+@WebServiceClient(name = "CardService", targetNamespace = "http://card.ejb.card_editor.com.br/", wsdlLocation = "http://localhost:7004/CardServiceImpl/CardService?WSDL")
 public class CardService
     extends Service
 {
@@ -30,9 +30,9 @@ public class CardService
         try {
             URL baseUrl;
             baseUrl = br.com.card_editor.ejb.card.CardService.class.getResource(".");
-            url = new URL(baseUrl, "http://192.168.43.207:7004/CardServiceImpl/CardService?WSDL");
+            url = new URL(baseUrl, "http://localhost:7004/CardServiceImpl/CardService?WSDL");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.43.207:7004/CardServiceImpl/CardService?WSDL', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:7004/CardServiceImpl/CardService?WSDL', retrying as a local file");
             logger.warning(e.getMessage());
         }
         CARDSERVICE_WSDL_LOCATION = url;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="card_editor_service-ear-1.0.0">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="card_editor_service-ejb-1.0.0.jar" deploy-path="/" handle="module:/resource/card_editor_service-ejb/card_editor_service-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="card_editor_service-bean-1.0.0.jar" deploy-path="/lib" handle="module:/resource/card_editor_service-bean/card_editor_service-bean">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="card_editor_service-entity-1.0.0.jar" deploy-path="/lib" handle="module:/resource/card_editor_service-entity/card_editor_service-entity">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mongo-java-driver-3.2.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/mongodb/mongo-java-driver/3.2.2/mongo-java-driver-3.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-archiver-3.3.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/codehaus/plexus/plexus-archiver/3.3/plexus-archiver-3.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-utils-3.0.24.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/codehaus/plexus/plexus-utils/3.0.24/plexus-utils-3.0.24.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-io-2.7.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/codehaus/plexus/plexus-io/2.7.1/plexus-io-2.7.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.5.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-io/commons-io/2.5/commons-io-2.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-compress-1.11.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/apache/commons/commons-compress/1.11/commons-compress-1.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="snappy-0.4.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/iq80/snappy/snappy/0.4/snappy-0.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xz-1.5.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/tukaani/xz/1.5/xz-1.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

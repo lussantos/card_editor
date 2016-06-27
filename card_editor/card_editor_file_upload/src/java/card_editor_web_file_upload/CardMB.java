@@ -8,10 +8,7 @@ package card_editor_web_file_upload;
 import br.com.card_editor.acesso.CardServiceAcesso;
 import br.com.card_editor.ejb.card.CardBean;
 import br.com.card_editor.ejb.card.InSalvarCard;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +25,6 @@ import org.primefaces.event.FileUploadEvent;
 public class CardMB implements Serializable {
 
     public void uploadFile(FileUploadEvent event) {
-        OutputStream outputStream = null;
         try {
             // write the card.getInputstream() to a FileOutputStream
             CardServiceAcesso acesso = new CardServiceAcesso();
@@ -53,15 +49,6 @@ public class CardMB implements Serializable {
             } catch (IOException iOException) {
             }
 
-            if (outputStream != null) {
-                try {
-                    // outputStream.flush();
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
         }
     }
 }
