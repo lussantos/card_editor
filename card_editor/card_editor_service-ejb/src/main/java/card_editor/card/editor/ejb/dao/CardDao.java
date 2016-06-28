@@ -13,6 +13,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
+import java.io.File;
 
 /**
  *
@@ -20,7 +21,7 @@ import com.mongodb.gridfs.GridFSInputFile;
  */
 public class CardDao extends DaoBase {
 
-    public static void insertCard(Card card, MongoDatabase db) throws IllegalAccessException {
+    public static void insertCard(Card card, MongoDatabase db) throws Exception {
         try {
             MongoClientURI uri = new MongoClientURI("mongodb://developer:developer@ds053874.mlab.com:53874/card_set_db");
             MongoClient client = new MongoClient(uri);
@@ -33,9 +34,18 @@ public class CardDao extends DaoBase {
             gfsFile.put("userName", card.getUserName());
             gfsFile.save();
             client.close();
-            card.getTemplate().getParentFile().deleteOnExit();
-        } catch (Exception E) {
 
+            File pathRemove = new File(card.getTemplate().getParent());
+            pathRemove.mkdir();
+            if (card.getTemplate().exists()) {
+                card.getTemplate().delete();
+            }
+            if (pathRemove.exists()) {
+                pathRemove.delete();
+            }
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage(), e.getCause());
         }
     }
 }

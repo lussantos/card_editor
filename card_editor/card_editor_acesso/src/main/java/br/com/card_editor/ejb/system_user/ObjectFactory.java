@@ -43,43 +43,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExcluirUsuario }
+     * Create an instance of {@link SystemUser }
      * 
      */
-    public ExcluirUsuario createExcluirUsuario() {
-        return new ExcluirUsuario();
-    }
-
-    /**
-     * Create an instance of {@link ExcluirUsuarioResponse }
-     * 
-     */
-    public ExcluirUsuarioResponse createExcluirUsuarioResponse() {
-        return new ExcluirUsuarioResponse();
-    }
-
-    /**
-     * Create an instance of {@link VerificaAcessoUsuario }
-     * 
-     */
-    public VerificaAcessoUsuario createVerificaAcessoUsuario() {
-        return new VerificaAcessoUsuario();
-    }
-
-    /**
-     * Create an instance of {@link VerificaExistenciaUsuario }
-     * 
-     */
-    public VerificaExistenciaUsuario createVerificaExistenciaUsuario() {
-        return new VerificaExistenciaUsuario();
-    }
-
-    /**
-     * Create an instance of {@link CadastrarUsuario }
-     * 
-     */
-    public CadastrarUsuario createCadastrarUsuario() {
-        return new CadastrarUsuario();
+    public SystemUser createSystemUser() {
+        return new SystemUser();
     }
 
     /**
@@ -91,11 +59,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link VerificaAcessoUsuarioResponse }
+     * Create an instance of {@link CadastrarUsuarioResponse }
      * 
      */
-    public VerificaAcessoUsuarioResponse createVerificaAcessoUsuarioResponse() {
-        return new VerificaAcessoUsuarioResponse();
+    public CadastrarUsuarioResponse createCadastrarUsuarioResponse() {
+        return new CadastrarUsuarioResponse();
     }
 
     /**
@@ -107,14 +75,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CadastrarUsuarioResponse }
-     * 
-     */
-    public CadastrarUsuarioResponse createCadastrarUsuarioResponse() {
-        return new CadastrarUsuarioResponse();
-    }
-
-    /**
      * Create an instance of {@link AlterarUsuarioResponse }
      * 
      */
@@ -123,11 +83,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SystemUser }
+     * Create an instance of {@link VerificaExistenciaUsuario }
      * 
      */
-    public SystemUser createSystemUser() {
-        return new SystemUser();
+    public VerificaExistenciaUsuario createVerificaExistenciaUsuario() {
+        return new VerificaExistenciaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link OutVerificaExistenciaUsuario }
+     * 
+     */
+    public OutVerificaExistenciaUsuario createOutVerificaExistenciaUsuario() {
+        return new OutVerificaExistenciaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link CadastrarUsuario }
+     * 
+     */
+    public CadastrarUsuario createCadastrarUsuario() {
+        return new CadastrarUsuario();
+    }
+
+    /**
+     * Create an instance of {@link VerificaAcessoUsuario }
+     * 
+     */
+    public VerificaAcessoUsuario createVerificaAcessoUsuario() {
+        return new VerificaAcessoUsuario();
+    }
+
+    /**
+     * Create an instance of {@link ExcluirUsuarioResponse }
+     * 
+     */
+    public ExcluirUsuarioResponse createExcluirUsuarioResponse() {
+        return new ExcluirUsuarioResponse();
+    }
+
+    /**
+     * Create an instance of {@link VerificaAcessoUsuarioResponse }
+     * 
+     */
+    public VerificaAcessoUsuarioResponse createVerificaAcessoUsuarioResponse() {
+        return new VerificaAcessoUsuarioResponse();
     }
 
     /**
@@ -139,11 +139,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OutVerificaExistenciaUsuario }
+     * Create an instance of {@link ExcluirUsuario }
      * 
      */
-    public OutVerificaExistenciaUsuario createOutVerificaExistenciaUsuario() {
-        return new OutVerificaExistenciaUsuario();
+    public ExcluirUsuario createExcluirUsuario() {
+        return new ExcluirUsuario();
     }
 
     /**

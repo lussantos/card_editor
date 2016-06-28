@@ -38,11 +38,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InSalvarCard }
+     * Create an instance of {@link InsertCard }
      * 
      */
-    public InSalvarCard createInSalvarCard() {
-        return new InSalvarCard();
+    public InsertCard createInsertCard() {
+        return new InsertCard();
+    }
+
+    /**
+     * Create an instance of {@link SearchImageResponse }
+     * 
+     */
+    public SearchImageResponse createSearchImageResponse() {
+        return new SearchImageResponse();
+    }
+
+    /**
+     * Create an instance of {@link CardBean }
+     * 
+     */
+    public CardBean createCardBean() {
+        return new CardBean();
+    }
+
+    /**
+     * Create an instance of {@link InSearchImage }
+     * 
+     */
+    public InSearchImage createInSearchImage() {
+        return new InSearchImage();
     }
 
     /**
@@ -62,22 +86,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InSearchImage }
-     * 
-     */
-    public InSearchImage createInSearchImage() {
-        return new InSearchImage();
-    }
-
-    /**
-     * Create an instance of {@link CardBean }
-     * 
-     */
-    public CardBean createCardBean() {
-        return new CardBean();
-    }
-
-    /**
      * Create an instance of {@link Exception }
      * 
      */
@@ -86,19 +94,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InsertCard }
+     * Create an instance of {@link InSalvarCard }
      * 
      */
-    public InsertCard createInsertCard() {
-        return new InsertCard();
-    }
-
-    /**
-     * Create an instance of {@link SearchImageResponse }
-     * 
-     */
-    public SearchImageResponse createSearchImageResponse() {
-        return new SearchImageResponse();
+    public InSalvarCard createInSalvarCard() {
+        return new InSalvarCard();
     }
 
     /**

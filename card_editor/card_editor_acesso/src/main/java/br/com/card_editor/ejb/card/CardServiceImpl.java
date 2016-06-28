@@ -27,6 +27,20 @@ public interface CardServiceImpl {
     /**
      * 
      * @param arg0
+     * @throws Exception_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "insertCard", targetNamespace = "http://card.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.card.InsertCard")
+    @ResponseWrapper(localName = "insertCardResponse", targetNamespace = "http://card.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.card.InsertCardResponse")
+    public void insertCard(
+        @WebParam(name = "arg0", targetNamespace = "")
+        InSalvarCard arg0)
+        throws Exception_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns java.util.List<br.com.card_editor.ejb.card.CardBean>
      * @throws Exception_Exception
@@ -38,20 +52,6 @@ public interface CardServiceImpl {
     public List<CardBean> searchImage(
         @WebParam(name = "arg0", targetNamespace = "")
         InSearchImage arg0)
-        throws Exception_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws Exception_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "insertCard", targetNamespace = "http://card.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.card.InsertCard")
-    @ResponseWrapper(localName = "insertCardResponse", targetNamespace = "http://card.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.card.InsertCardResponse")
-    public void insertCard(
-        @WebParam(name = "arg0", targetNamespace = "")
-        InSalvarCard arg0)
         throws Exception_Exception
     ;
 

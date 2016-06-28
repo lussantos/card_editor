@@ -26,6 +26,39 @@ public interface SystemUserServiceImpl {
     /**
      * 
      * @param systemUser
+     */
+    @WebMethod
+    @RequestWrapper(localName = "alterarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.AlterarUsuario")
+    @ResponseWrapper(localName = "alterarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.AlterarUsuarioResponse")
+    public void alterarUsuario(
+        @WebParam(name = "SystemUser", targetNamespace = "")
+        SystemUser systemUser);
+
+    /**
+     * 
+     * @param systemUser
+     */
+    @WebMethod
+    @RequestWrapper(localName = "excluirUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.ExcluirUsuario")
+    @ResponseWrapper(localName = "excluirUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.ExcluirUsuarioResponse")
+    public void excluirUsuario(
+        @WebParam(name = "SystemUser", targetNamespace = "")
+        SystemUser systemUser);
+
+    /**
+     * 
+     * @param systemUser
+     */
+    @WebMethod
+    @RequestWrapper(localName = "cadastrarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuario")
+    @ResponseWrapper(localName = "cadastrarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuarioResponse")
+    public void cadastrarUsuario(
+        @WebParam(name = "SystemUser", targetNamespace = "")
+        SystemUser systemUser);
+
+    /**
+     * 
+     * @param systemUser
      * @return
      *     returns br.com.card_editor.ejb.system_user.OutVerificaAcessoUsuario
      */
@@ -48,39 +81,6 @@ public interface SystemUserServiceImpl {
     @RequestWrapper(localName = "verificaExistenciaUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.VerificaExistenciaUsuario")
     @ResponseWrapper(localName = "verificaExistenciaUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.VerificaExistenciaUsuarioResponse")
     public OutVerificaExistenciaUsuario verificaExistenciaUsuario(
-        @WebParam(name = "SystemUser", targetNamespace = "")
-        SystemUser systemUser);
-
-    /**
-     * 
-     * @param systemUser
-     */
-    @WebMethod
-    @RequestWrapper(localName = "excluirUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.ExcluirUsuario")
-    @ResponseWrapper(localName = "excluirUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.ExcluirUsuarioResponse")
-    public void excluirUsuario(
-        @WebParam(name = "SystemUser", targetNamespace = "")
-        SystemUser systemUser);
-
-    /**
-     * 
-     * @param systemUser
-     */
-    @WebMethod
-    @RequestWrapper(localName = "alterarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.AlterarUsuario")
-    @ResponseWrapper(localName = "alterarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.AlterarUsuarioResponse")
-    public void alterarUsuario(
-        @WebParam(name = "SystemUser", targetNamespace = "")
-        SystemUser systemUser);
-
-    /**
-     * 
-     * @param systemUser
-     */
-    @WebMethod
-    @RequestWrapper(localName = "cadastrarUsuario", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuario")
-    @ResponseWrapper(localName = "cadastrarUsuarioResponse", targetNamespace = "http://system_user.ejb.card_editor.com.br/", className = "br.com.card_editor.ejb.system_user.CadastrarUsuarioResponse")
-    public void cadastrarUsuario(
         @WebParam(name = "SystemUser", targetNamespace = "")
         SystemUser systemUser);
 
