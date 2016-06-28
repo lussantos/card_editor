@@ -8,9 +8,6 @@ package card_editor.card.editor.ejb.dao;
 import br.com.card_editor.entity.Card;
 import card_editor.card.editor.util.DaoBase;
 import com.mongodb.DB;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSInputFile;
 import java.io.File;
@@ -21,19 +18,15 @@ import java.io.File;
  */
 public class CardDao extends DaoBase {
 
-    public static void insertCard(Card card, MongoDatabase db) throws Exception {
+    public static void insertCard(Card card, DB db) throws Exception {
         try {
-            MongoClientURI uri = new MongoClientURI("mongodb://developer:developer@ds053874.mlab.com:53874/card_set_db");
-            MongoClient client = new MongoClient(uri);
-            DB dbGrid = client.getDB(uri.getDatabase());
-            GridFS gfsPhoto = new GridFS(dbGrid, "photo");
+            GridFS gfsPhoto = new GridFS(db, "photo");
             GridFSInputFile gfsFile = gfsPhoto.createFile(card.getTemplate());
             gfsFile.setFilename(card.getTemplate().getName());
             gfsFile.put("name", card.getName());
             gfsFile.put("text", card.getText());
             gfsFile.put("userName", card.getUserName());
             gfsFile.save();
-            client.close();
 
             File pathRemove = new File(card.getTemplate().getParent());
             pathRemove.mkdir();

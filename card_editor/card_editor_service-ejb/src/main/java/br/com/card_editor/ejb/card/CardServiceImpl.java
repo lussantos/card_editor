@@ -6,13 +6,14 @@
 package br.com.card_editor.ejb.card;
 
 import br.com.card_editor.bean.CardBean;
-import br.com.card_editor.entity.Card;
 import br.com.card_editor.input.InSalvarCard;
 import br.com.card_editor.input.InSearchImage;
 import card_editor.card.editor.ejb.dao.CardDao;
 import card_editor.card.editor.util.FilesUtil;
 import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,8 +36,8 @@ public class CardServiceImpl extends ServiceBase implements CardService {
         try {
             FilesUtil.convertByteFToFile(inSalvarCard.getTemplate(), inSalvarCard.getUserName());
             FilesUtil.decompressArchive(inSalvarCard.getUserName());
-            
-            CardDao.insertCard(FilesUtil.getCardDecompressed(inSalvarCard.getUserName()), getConnetcion(client));
+
+            CardDao.insertCard(FilesUtil.getCardDecompressed(inSalvarCard.getUserName()), getDBConnection(client));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CardServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,7 +46,12 @@ public class CardServiceImpl extends ServiceBase implements CardService {
 
     @Override
     public List<CardBean> searchImage(InSearchImage inSearchImage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        String newFileName = "mkyong-java-image";
+//        GridFS gfsPhoto = new GridFS(db, "photo");
+//        GridFSDBFile imageForOutput = gfsPhoto.findOne(newFileName);
+//        System.out.println(imageForOutput);
+//        http://www.mkyong.com/mongodb/java-mongodb-save-image-example/
+        return null;
     }
 
 }

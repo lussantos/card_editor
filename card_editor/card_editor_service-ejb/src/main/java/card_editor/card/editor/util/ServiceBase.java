@@ -5,6 +5,7 @@
  */
 package card_editor.card.editor.util;
 
+import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
@@ -22,4 +23,10 @@ public class ServiceBase {
         return db;
     }
 
+    protected DB getDBConnection(MongoClient client) {
+        MongoClientURI uri = new MongoClientURI("mongodb://developer:developer@ds053874.mlab.com:53874/card_set_db");
+        client = new MongoClient(uri);
+        DB db = client.getDB(uri.getDatabase());
+        return db;
+    }
 }
