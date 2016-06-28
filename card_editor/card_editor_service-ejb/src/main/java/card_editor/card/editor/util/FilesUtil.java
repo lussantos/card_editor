@@ -81,18 +81,27 @@ public class FilesUtil {
         }
     }
 
-    public static Card getCardJson(String userName) {
-        Card card = null;
+    public static Card getCardDecompressed(String userName) {
 
         final File destDir = new File(userName + "_decompressed");
         destDir.mkdir();
         File json = null;
+        File image = null;
         for (File file : destDir.listFiles()) {
             if (file.getName().contains(".json")) {
                 json = file;
-                break;
+            } else if (file.getName().contains(".jpeg")
+                    || file.getName().contains(".jpg") || file.getName().contains(".png")) {
+                image = file;
             }
         }
+        Card retorno = getCardFromJson(json);
+        retorno.setTemplate(image);
+        return retorno;
+    }
+
+    private static Card getCardFromJson(File json) {
+        Card card = null;
         if (json != null) {
             card = new Card();
             try {

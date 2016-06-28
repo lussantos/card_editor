@@ -31,15 +31,15 @@ public class CardServiceImpl extends ServiceBase implements CardService {
     public void insertCard(InSalvarCard inSalvarCard) throws Exception {
 
         MongoClient client = new MongoClient(uri);
-        FilesUtil.convertByteFToFile(inSalvarCard.getTemplate(), inSalvarCard.getUserName());
-        FilesUtil.decompressArchive(inSalvarCard.getUserName());
-        FilesUtil.getCardJson(inSalvarCard.getUserName());
 
-//        try {
-//            CardDao.insertCard(convertCard(inSalvarCard), getConnetcion(client));
-//        } catch (IllegalAccessException ex) {
-//            Logger.getLogger(CardServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            FilesUtil.convertByteFToFile(inSalvarCard.getTemplate(), inSalvarCard.getUserName());
+            FilesUtil.decompressArchive(inSalvarCard.getUserName());
+            
+            CardDao.insertCard(FilesUtil.getCardDecompressed(inSalvarCard.getUserName()), getConnetcion(client));
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(CardServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         client.close();
     }
 

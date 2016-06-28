@@ -7,6 +7,7 @@ package br.com.card_editor.entity;
 
 import br.com.card_editor.annotation.ID;
 import br.com.card_editor.annotation.Table;
+import br.com.card_editor.annotation.Transient;
 import br.com.card_editor.util.EntityBase;
 import java.io.File;
 
@@ -20,13 +21,14 @@ public class Card extends EntityBase {
     @ID
     private Long id;
 
-    private String nickName;
+    private String userName;
 
     private String name;
 
     private String text;
 
-    private byte[] template;
+    @Transient(name = "template")
+    private File template;
 
     public Long getId() {
         return id;
@@ -36,12 +38,12 @@ public class Card extends EntityBase {
         this.id = id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {
@@ -60,11 +62,11 @@ public class Card extends EntityBase {
         this.text = text;
     }
 
-    public byte[] getTemplate() {
+    public File getTemplate() {
         return template;
     }
 
-    public void setTemplate(byte[] template) {
+    public void setTemplate(File template) {
         this.template = template;
     }
 
