@@ -44,7 +44,7 @@ public class SystemUserDao extends DaoBase {
     public static boolean verificaAcessoUsuario(SystemUser user, MongoDatabase db) throws IllegalAccessException, IllegalClassFormatException {
         MongoCollection collection = db.getCollection(user.getClass().getAnnotation(Table.class).collectionName());
         BasicDBObject obj = new BasicDBObject();
-        obj.put("userName", user.getUserName());
+        obj.put("_id", user.getUserName());
         obj.put("userPassword", user.getUserPassword());
         return collection.find(obj).iterator().hasNext();
     }

@@ -5,6 +5,7 @@
  */
 package card_editor.card.editor.util;
 
+import br.com.card_editor.entity.Card;
 import java.io.File;
 import java.io.FileOutputStream;
 import org.codehaus.plexus.archiver.UnArchiver;
@@ -13,12 +14,14 @@ import org.codehaus.plexus.archiver.tar.TarUnArchiver;
 import org.codehaus.plexus.archiver.zip.AbstractZipUnArchiver;
 import org.codehaus.plexus.archiver.zip.ZipUnArchiver;
 import org.codehaus.plexus.logging.console.ConsoleLogger;
+import org.codehaus.jackson.map.*;
+import org.codehaus.jackson.*;
 
 /**
  *
  * @author lucas.santos
  */
-public class CompressedFilesUtil {
+public class FilesUtil {
 
     public static void convertByteFToFile(byte[] content, String userName) throws Exception {
         try {
@@ -78,4 +81,49 @@ public class CompressedFilesUtil {
         }
     }
 
+    public static Card getCardJson(String userName) {
+        Card card = null;
+
+        final File destDir = new File(userName + "_decompressed");
+        destDir.mkdir();
+        File json = null;
+        for (File file : destDir.listFiles()) {
+            if (file.getName().contains(".json")) {
+                json = file;
+                break;
+            }
+        }
+        if (json != null) {
+            card = new Card();
+            try {
+                JsonFactory f = new MappingJsonFactory();
+
+                JsonParser jp = f.createJsonParser(json);
+
+                JsonToken current;
+
+                current = jp.nextToken();
+                if (current != JsonToken.START_OBJECT) {
+                    System.out.println("Error: root should be object: quiting.");
+                    return null;
+                }
+
+                while (jp.nextToken() != JsonToken.END_OBJECT) {
+                    String fieldName = jp.getCurrentName();
+                    if ("name".equals(fieldName)) {
+                        jp.nextToken();
+                        card.setName(jp.getText());
+                    }
+                    if ("text".equals(fieldName)) {
+                        jp.nextToken();
+                        card.setText(jp.getText());
+                    }
+                }
+                jp.close();
+            } catch (Exception exception) {
+            }
+            json.delete();
+        }
+        return card;
+    }
 }

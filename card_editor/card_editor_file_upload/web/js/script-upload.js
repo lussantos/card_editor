@@ -1,16 +1,67 @@
-(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function(){
-(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-79906529-1', 'auto');
-        ga('send', 'pageview');
-        ga('set', 'userId',$.cookie("userName"));
-        /* 
-         * To change this license header, choose License Headers in Project Properties.
-         * To change this template file, choose Tools | Templates
-         * and open the template in the editor.
-         */
 
-//document.getElementsByClassName("ui-fileupload-choose")[0].className += " btn btn-primary glyphicon glyphicon-plus";
-//document.getElementsByClassName("ui-fileupload-upload")[0].className += " btn btn-secondary glyphicon glyphicon-cloud-upload";
-//document.getElementsByClassName("ui-fileupload-cancel")[0].className += " btn btn-danger glyphicon glyphicon-remove";
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+function verificarGrowl() {
+    var err = $("body").find("[class*='ui-growl-image-error']");
+    var warn = $("body").find("[class*='ui-growl-image-warn']");
+    var sucess = $("body").find("[class*='ui-growl-image-info']");
+
+    if (err !== undefined && err.is(":visible")) {
+        var growl = $("body").find("[class*='ui-growl-item-container']");
+        var els = $(growl).find("[class*='ui-growl-image-error']");
+        if (els !== undefined && els.length > 0) {
+            for (var i = 0, l = growl.length; i < l; i++) {
+                var el = $(growl[i]).find("[class*='ui-growl-image-error']");
+                if (el !== undefined && el.length > 0) {
+                    if (growl[i].className === undefined
+                            || (growl[i].className !== undefined &&
+                                    growl[i].className.indexOf(" error-growl") < 0)) {
+                        growl[i].className += " error-growl";
+                    }
+                    growl[i].className.replace(" sucess-growl", "");
+                    growl[i].className.replace(" warn-growl", "");
+                }
+            }
+        }
+    }
+    if (warn !== undefined && warn.is(":visible")) {
+        var growl = $("body").find("[class*='ui-growl-item-container']");
+        var els = $(growl).find("[class*='ui-growl-image-warn']");
+        if (els !== undefined && els.length > 0) {
+            for (var i = 0, l = growl.length; i < l; i++) {
+                var el = $(growl[i]).find("[class*='ui-growl-image-warn']");
+                if (el !== undefined && el.length > 0) {
+                    if (growl[i].className === undefined
+                            || (growl[i].className !== undefined &&
+                                    growl[i].className.indexOf(" warn-growl") < 0)) {
+                        growl[i].className += " warn-growl";
+                    }
+                    growl[i].className.replace(" sucess-growl", "");
+                    growl[i].className.replace(" error-growl", "");
+                }
+            }
+        }
+    }
+    if (sucess !== undefined && sucess.is(":visible")) {
+        var growl = $("body").find("[class*='ui-growl-item-container']");
+        var els = $(growl).find("[class*='ui-growl-image-info']");
+        if (els !== undefined && els.length > 0) {
+            for (var i = 0, l = growl.length; i < l; i++) {
+                var el = $(growl[i]).find("[class*='ui-growl-image-info']");
+                if (el !== undefined && el.length > 0) {
+                    if (growl[i].className === undefined
+                            || (growl[i].className !== undefined &&
+                                    growl[i].className.indexOf(" sucess-growl") < 0)) {
+                        growl[i].className += " sucess-growl";
+                    }
+                    growl[i].className.replace(" warn-growl", "");
+                    growl[i].className.replace(" error-growl", "");
+                }
+            }
+        }
+    }
+}

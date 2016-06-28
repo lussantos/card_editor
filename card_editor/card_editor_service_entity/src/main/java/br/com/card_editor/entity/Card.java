@@ -24,9 +24,9 @@ public class Card extends EntityBase {
 
     private String name;
 
-    private String description;
+    private String text;
 
-    private File template;
+    private byte[] template;
 
     public Long getId() {
         return id;
@@ -52,19 +52,19 @@ public class Card extends EntityBase {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getText() {
+        return text;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public File getTemplate() {
+    public byte[] getTemplate() {
         return template;
     }
 
-    public void setTemplate(File template) {
+    public void setTemplate(byte[] template) {
         this.template = template;
     }
 
