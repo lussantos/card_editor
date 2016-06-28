@@ -33,7 +33,7 @@ public class CardDao extends DaoBase {
             gfsFile.put("userName", card.getUserName());
             gfsFile.save();
             client.close();
-            card.getTemplate().getParentFile().delete();
+            card.getTemplate().getParentFile().deleteOnExit();
         } catch (Exception E) {
 
         }
