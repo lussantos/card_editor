@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "SystemUserService", targetNamespace = "http://system_user.ejb.card_editor.com.br/", wsdlLocation = "http://192.168.0.11:7004/SystemUserServiceImpl/SystemUserService?WSDL")
+@WebServiceClient(name = "SystemUserService", targetNamespace = "http://system_user.ejb.card_editor.com.br/", wsdlLocation = "http://192.168.43.207:7004/SystemUserServiceImpl/SystemUserService?WSDL")
 public class SystemUserService
     extends Service
 {
@@ -30,9 +30,9 @@ public class SystemUserService
         try {
             URL baseUrl;
             baseUrl = br.com.card_editor.ejb.system_user.SystemUserService.class.getResource(".");
-            url = new URL(baseUrl, "http://192.168.0.11:7004/SystemUserServiceImpl/SystemUserService?WSDL");
+            url = new URL(baseUrl, "http://192.168.43.207:7004/SystemUserServiceImpl/SystemUserService?WSDL");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.0.11:7004/SystemUserServiceImpl/SystemUserService?WSDL', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.43.207:7004/SystemUserServiceImpl/SystemUserService?WSDL', retrying as a local file");
             logger.warning(e.getMessage());
         }
         SYSTEMUSERSERVICE_WSDL_LOCATION = url;
