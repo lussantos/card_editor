@@ -15,7 +15,7 @@ public class InSearchImage implements Serializable {
 
     private String userName;
 
-    private Long idPost;
+    private String idImage;
 
     private Long imageQuality;
 
@@ -29,12 +29,12 @@ public class InSearchImage implements Serializable {
         this.userName = userName;
     }
 
-    public Long getIdPost() {
-        return idPost;
+    public String getIdImage() {
+        return idImage;
     }
 
-    public void setIdPost(Long idPost) {
-        this.idPost = idPost;
+    public void setIdImage(String idImage) {
+        this.idImage = idImage;
     }
 
     public Long getImageQuality() {

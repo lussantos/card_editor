@@ -14,6 +14,7 @@ import card_editor.card.editor.util.ServiceBase;
 import com.mongodb.MongoClient;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,12 +47,25 @@ public class CardServiceImpl extends ServiceBase implements CardService {
 
     @Override
     public List<CardBean> searchImage(InSearchImage inSearchImage) throws Exception {
-//        String newFileName = "mkyong-java-image";
-//        GridFS gfsPhoto = new GridFS(db, "photo");
-//        GridFSDBFile imageForOutput = gfsPhoto.findOne(newFileName);
-//        System.out.println(imageForOutput);
-//        http://www.mkyong.com/mongodb/java-mongodb-save-image-example/
-        return null;
+        MongoClient client = new MongoClient(uri);
+        GridFS gfsPhoto = new GridFS(getDBConnection(client), "photo");
+        List<GridFSDBFile> list = CardDao.searchCards(gfsPhoto, inSearchImage);
+        client.close();
+        List<CardBean> listaRetorno = this.tranformList(list, gfsPhoto);
+        return listaRetorno;
     }
 
+    private List<CardBean> tranformList(List<GridFSDBFile> list, GridFS gfsPhoto) {
+        List<CardBean> retorno = new ArrayList<CardBean>();
+        for (GridFSDBFile grid : list) {
+            CardBean card = new CardBean();
+            card.setName(grid.containsField("name") ? (String) grid.get("name") : null);
+            card.setDescription(grid.containsField("text") ? (String) grid.get("text") : null);
+            card.setUserName(grid.containsField("userName") ? (String) grid.get("userName") : null);
+            card.setId(grid.containsField("oid") ? (String) grid.get("oid") : null);
+            card.setTemplate(FilesUtil.getSource(grid, gfsPhoto));
+            retorno.add(card);
+        }
+        return retorno;
+    }
 }

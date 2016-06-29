@@ -12,8 +12,8 @@
 
 ga('create', 'UA-79906529-1', 'auto');
 ga('send', 'pageview');
-ga('set', 'userId', $.cookie("userName") === null || $.cookie("userName") === undefined ? 'Desconhecido':$.cookie("userName"));
-        $(document).ready(function () {
+ga('set', 'userId', $.cookie("userName") === null || $.cookie("userName") === undefined ? 'Desconhecido' : $.cookie("userName"));
+$(document).ready(function () {
     $('#menu').load('cabecalho.html');
 });
 
@@ -37,7 +37,10 @@ function salvarUsuario() {
         });
     }
 }
-
+function processSuccesCadastro() {
+    $.cookie("userName", document.getElementById("name").value);
+    window.location.replace("http://" + window.location.hostname + ":7004/card_editor_web");
+}
 function createSoapRequest(method, parameterClass) {
     var a = "<soap:Envelope xmlns:soap=" + '"' + "http://schemas.xmlsoap.org/soap/envelope/" + '"' + ">" +
             "<soap:Body>" +
@@ -119,4 +122,38 @@ function processError(data, status, req) {
 
 function getHostLink() {
     return window.location.hostname;
+}
+
+function efetuarLogin() {
+    if (document.getElementById("usr") !== null && document.getElementById("usr").value !== "") {
+        jQuery.support.cors = true;
+        var wsUrl = "http://" + window.location.hostname + ":7004/SystemUserServiceImpl/SystemUserService?WSDL";
+        var soapRequest = createSoapRequestSimgleParameter('verificaAcessoUsuario', 'SystemUser', 'system_user', [['userName', document.getElementById("usr").value], ['userPassword', document.getElementById("pwd").value]]);
+        $.ajax({
+            crossDomain: false,
+            type: "POST",
+            url: wsUrl,
+            contentType: "text/xml",
+            dataType: "xml",
+            data: soapRequest,
+            success: processSuceesLogin,
+            error: processError
+        });
+    }
+
+}
+
+function processSuceesLogin(data, status, req) {
+    if ($(req.responseXML).find("possuiAcesso").text() === "true") {
+        $('#resp_user').text('Login efetuado com sucesso.');
+        $.cookie("userName", document.getElementById("usr").value);
+        window.location.replace("http://" + window.location.hostname + ":7004/card_editor_web/public_html/pages/index.html");
+    } else {
+        $('#resp_user').text('Usuário válido!');
+    }
+}
+
+function efetuarLogout() {
+    $.removeCookie("userName");
+    location.reload();
 }

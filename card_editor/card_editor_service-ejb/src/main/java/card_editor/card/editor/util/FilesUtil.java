@@ -6,8 +6,13 @@
 package card_editor.card.editor.util;
 
 import br.com.card_editor.entity.Card;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.codehaus.plexus.archiver.UnArchiver;
 import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
 import org.codehaus.plexus.archiver.tar.TarUnArchiver;
@@ -96,6 +101,7 @@ public class FilesUtil {
             }
         }
         Card retorno = getCardFromJson(json);
+        retorno.setUserName(userName);
         retorno.setTemplate(image);
         return retorno;
     }
@@ -134,5 +140,24 @@ public class FilesUtil {
             json.delete();
         }
         return card;
+    }
+
+    public static byte[] getSource(GridFSDBFile grid, GridFS gfsPhoto) {
+        try {
+            final File destDir = new File("temp_images");
+            destDir.mkdir();
+            if (!destDir.exists()) {
+                destDir.createNewFile();
+            }
+            File image = new File(destDir, "image.png");
+            grid.writeTo(image);
+            gfsPhoto.remove(gfsPhoto.findOne(grid.getFilename()));
+            Path path = Paths.get(image.getPath());
+            byte[] data = Files.readAllBytes(path);
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

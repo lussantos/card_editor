@@ -99,6 +99,13 @@ public class CardMB implements Serializable {
         RequestContext.getCurrentInstance().update("messages");
     }
 
+    public void efetuarLogout() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (request.getSession().getAttribute(COOKIE_USER) != null) {
+            request.getSession().removeAttribute(COOKIE_USER);
+        }
+    }
+
     public String getUserName() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         if (request.getSession().getAttribute(COOKIE_USER) != null) {

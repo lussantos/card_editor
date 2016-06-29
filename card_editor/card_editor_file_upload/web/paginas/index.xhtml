@@ -21,11 +21,15 @@
                                 value="#{cardMB.systemUser.userPassword}" />
                     <p:commandButton actionListener="#{cardMB.efetuarLogin()}"
                                      process="panel"
-                                     value="Efetuar Login para efetuar upload de projeto."
+                                     value="Efetuar Login para efetuar upload de carta."
                                      update="panel" />
                 </p:outputPanel>
                 <p:outputPanel rendered="#{cardMB.userName ne null and not empty cardMB.userName}">
                     <p:outputLabel value="Seja bem vindo #{cardMB.userName}!" />
+                    <p:commandButton actionListener="#{cardMB.efetuarLogout()}"
+                                     process="panel"
+                                     value="Efetuar Logout."
+                                     update="panel" />
                 </p:outputPanel>
             </p:outputPanel>
             <h1>

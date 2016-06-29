@@ -6,11 +6,15 @@
 package card_editor.card.editor.ejb.dao;
 
 import br.com.card_editor.entity.Card;
+import br.com.card_editor.input.InSearchImage;
 import card_editor.card.editor.util.DaoBase;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
 import java.io.File;
+import java.util.List;
 
 /**
  *
@@ -40,5 +44,23 @@ public class CardDao extends DaoBase {
         } catch (Exception e) {
             throw new Exception(e.getMessage(), e.getCause());
         }
+    }
+
+    public static List<GridFSDBFile> searchCards(GridFS gfsPhoto, InSearchImage inSearchImage) {
+
+        BasicDBObject filter = new BasicDBObject();
+        if (inSearchImage.getCardName() != null) {
+            filter.put("name", inSearchImage.getCardName());
+        }
+        if (inSearchImage.getUserName() != null) {
+            filter.put("userName", inSearchImage.getUserName());
+        }
+        if (inSearchImage.getIdImage() != null) {
+            filter.put("_id", new BasicDBObject("oid", inSearchImage.getIdImage()));
+        }
+
+        List<GridFSDBFile> imagesForOutput = gfsPhoto.find(filter);
+
+        return imagesForOutput;
     }
 }

@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class CardBean {
 
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -21,11 +21,13 @@ public class CardBean {
 
     private byte[] template;
 
-    public Long getId() {
+    private String userName;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,6 +53,14 @@ public class CardBean {
 
     public void setTemplate(byte[] template) {
         this.template = template;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }
